@@ -1,4 +1,6 @@
-# CCDI Portal — Slot Management UI
+# Slot Management and Reservation Technology (SMART)
+
+CCDI Portal — Slot Management UI
 
 A Vite + React interface following the dark blue sidebar and white panels in the supplied video. Includes Student, Cashier, Accounting, and Admin views and reusable components.
 

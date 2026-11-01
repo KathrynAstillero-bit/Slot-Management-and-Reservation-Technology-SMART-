@@ -1,0 +1,48 @@
+/* About component styles. */
+
+.about-panel {
+  padding: 28px;
+}
+
+.about-panel > img {
+  margin-bottom: 18px;
+}
+
+.about-panel h2 {
+  font-size: 24px;
+  line-height: 1.45;
+  letter-spacing: -.6px;
+}
+
+.about-panel > p {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.about-panel .stat-card h3 {
+  font-size: 17px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.about-panel .stat-card p {
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  .about-panel {
+    padding: 24px;
+  }
+
+  .about-panel h2 {
+    font-size: 24px;
+  }
+
+  .about-panel > p {
+    font-size: 14px;
+  }
+
+  .about-panel .stat-card p {
+    font-size: 14px;
+  }
+}

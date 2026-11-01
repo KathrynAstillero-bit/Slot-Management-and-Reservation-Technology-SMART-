@@ -1,0 +1,786 @@
+.reference-shell[data-theme] .ui-status-guide { display:flex; align-items:center; flex-wrap:wrap; gap:8px 18px; padding:14px 16px; margin:0 0 18px; border:1px solid var(--campus-line); border-radius:12px; background:var(--campus-card); color:var(--palette-muted); font-size:13px; line-height:1.5; }
+.ui-status-guide strong { color:var(--palette-ink); }
+.ui-sync-notice { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.reference-shell[data-theme] :is(button,a,input,select,textarea,summary):focus-visible { outline:2px solid #68899c; outline-offset:3px; }
+.reference-shell[data-theme] .modal { scrollbar-gutter:stable; }
+.reference-shell[data-theme] .modal :is(.button,input,select) { min-height:40px; }
+.reference-shell[data-theme] .reservations-page .chip { white-space:normal; }
+@media(max-width:600px) {
+.reference-shell[data-theme] .modal-backdrop { padding:12px; }
+.reference-shell[data-theme] .modal { max-height:calc(100dvh - 24px); max-width:100%; }
+.reference-shell[data-theme] .modal :is(.modal-header,.modal-body,.modal-footer) { padding:16px; }
+.reference-shell[data-theme] .modal-footer { flex-wrap:wrap; gap:10px; }
+.reference-shell[data-theme] .modal-footer .button { flex:1 1 auto; justify-content:center; }
+.reference-shell[data-theme] .reservations-page .toolbar > div { flex-wrap:wrap; }
+.reference-shell[data-theme] .reservations-page .toolbar .field { min-width:0; flex:1 1 150px; }
+.reference-shell[data-theme] .ticket-ahead li { align-items:center; }
+.reference-shell[data-theme] .ref-dashboard .ref-recent-row > span:nth-child(2) { min-width:0; overflow-wrap:anywhere; }
+}
+@media(prefers-reduced-motion:reduce) { .reference-shell *, .reference-shell *::before,.reference-shell *::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+/* Mobile history: reserve a full text column and put status on its own row. */
+@media(max-width:700px) {
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card { min-width:0; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-list { min-width:0; width:100%; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-row { display:grid; grid-template-columns:34px minmax(0,1fr) 18px; grid-template-rows:auto auto; gap:10px; align-items:start; width:100%; min-width:0; padding:14px 12px; box-sizing:border-box; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-row > .ref-recent-symbol { grid-column:1; grid-row:1; width:34px; height:34px; margin:0; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-row > span:nth-child(2) { grid-column:2; grid-row:1; width:auto; min-width:0; max-width:none; flex:initial; overflow-wrap:break-word; word-break:normal; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-row :is(strong,small) { display:block; width:auto; max-width:none; white-space:normal; word-break:normal; overflow-wrap:break-word; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-row strong { font-size:14px; line-height:1.5; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-row small { font-size:13px; line-height:1.5; margin-top:5px; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-status { grid-column:2 / 4; grid-row:2; justify-self:start; width:fit-content; max-width:100%; margin:0; display:inline-flex; white-space:normal; font-size:12px; box-sizing:border-box; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-row > svg { grid-column:3; grid-row:1; width:18px; height:18px; margin-top:7px; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-section-header { display:flex; align-items:center; gap:10px; justify-content:space-between; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-section-header h2 { min-width:0; font-size:17px; line-height:1.4; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-text-button { flex-shrink:0; white-space:nowrap; }
+}
+/* Flat mobile navigation icons inside the existing dock. */
+@media(max-width:767px) {
+.reference-shell[data-theme] .reference-bottom-dock > .dock-active-bubble,
+.reference-shell[data-theme] .reference-bottom-dock::before,
+.reference-shell[data-theme] .reference-bottom-dock::after { display:none; }
+.reference-shell[data-theme] .reference-bottom-dock > button,
+.reference-shell[data-theme] .reference-bottom-dock > button:hover,
+.reference-shell[data-theme] .reference-bottom-dock > button.active { background:transparent; box-shadow:none; border:0; border-radius:0; transform:none; position:relative; }
+.reference-shell[data-theme] .reference-bottom-dock > button > svg,
+.reference-shell[data-theme] .reference-bottom-dock > button.active > svg { opacity:1; background:transparent; border:0; border-radius:0; box-shadow:none; padding:0; margin:0; width:20px; height:20px; transform:none; }
+.reference-shell[data-theme] .reference-bottom-dock > button.active { color:var(--palette-active); }
+.reference-shell[data-theme] .reference-bottom-dock > button.active::after { content:''; position:absolute; bottom:0; left:35%; right:35%; height:3px; border-radius:3px; background:currentColor; }
+}
+/* Mobile account access uses natural document flow instead of desktop slide sizing. */
+@media(max-width:760px) {
+.ref-auth-page[data-theme] { min-height:100svh; height:auto; padding:16px 12px calc(20px + env(safe-area-inset-bottom)); display:flex; flex-direction:column; justify-content:flex-start; align-items:center; overflow-x:clip; box-sizing:border-box; }
+.ref-auth-page[data-theme] .ref-auth-topbar { width:100%; max-width:480px; display:grid; grid-template-columns:1fr auto; gap:10px 12px; align-items:center; margin:0 0 16px; padding:0; }
+.ref-auth-page[data-theme] .ref-auth-wordmark { grid-column:1/-1; min-width:0; gap:10px; }
+.ref-auth-page[data-theme] .ref-auth-wordmark img { width:38px; height:38px; flex-shrink:0; }
+.ref-auth-page[data-theme] .ref-auth-wordmark span { white-space:normal; font-size:14px; line-height:1.4; overflow-wrap:break-word; }
+.ref-auth-page[data-theme] :is(.ref-auth-theme,.ref-auth-help) { position:static; min-height:40px; font-size:13px; padding:8px 12px; width:fit-content; margin:0; }
+.ref-auth-page[data-theme] .ref-auth-help { justify-self:end; }
+.ref-auth-page[data-theme] .ref-auth-card,.ref-auth-page[data-theme] .ref-auth-card.ref-auth-is-signup { display:flex; flex-direction:column; width:100%; max-width:480px; height:auto; min-height:0; max-height:none; margin:0; border-radius:22px; overflow:hidden; }
+.ref-auth-page[data-theme] .ref-auth-brand-depth { position:relative; inset:auto; order:-1; width:100%; height:auto; min-height:0; transform:none; clip-path:none; filter:none; }
+.ref-auth-page[data-theme] .ref-auth-brand { position:relative; inset:auto; width:100%; height:auto; min-height:0; padding:20px; clip-path:none; transform:none; border-radius:0; box-sizing:border-box; }
+.ref-auth-page[data-theme] .ref-auth-brand-content { display:grid; grid-template-columns:48px minmax(0,1fr); gap:8px 14px; position:relative; inset:auto; width:100%; max-width:none; height:auto; margin:0; padding:0; transform:none; }
+.ref-auth-page[data-theme] .ref-auth-brand-logo { width:48px; height:48px; grid-column:1; grid-row:1/3; margin:0; align-self:center; }
+.ref-auth-page[data-theme] .ref-auth-brand-content h2 { grid-column:2; font-size:23px; line-height:1.2; margin:0; letter-spacing:-.5px; max-width:none; }
+.ref-auth-page[data-theme] .ref-auth-brand-content h2 br { display:none; }
+.ref-auth-page[data-theme] .ref-auth-brand-content p { grid-column:2; margin:0; font-size:12px; line-height:1.5; max-width:none; }
+.ref-auth-page[data-theme] .ref-auth-brand-rule { display:none; }
+.ref-auth-page[data-theme] .ref-auth-form-slider { position:relative; inset:auto; width:100%; height:auto; min-height:0; transform:none; overflow:visible; }
+.ref-auth-page[data-theme] .ref-auth-form-slider .ref-auth-form-panel { position:relative; inset:auto; width:100%; height:auto; min-height:0; padding:24px 20px; transform:none; overflow:visible; display:block; box-sizing:border-box; }
+.ref-auth-page[data-theme] .ref-auth-form-slider .ref-auth-form-panel[aria-hidden=true] { display:none; }
+.ref-auth-page[data-theme] .ref-auth-form-content { width:100%; max-width:none; margin:0; min-width:0; }
+.ref-auth-page[data-theme] .ref-auth-form-content > :is(h1,h2) { font-size:30px; line-height:1.2; margin:0 0 8px; letter-spacing:-.7px; }
+.ref-auth-page[data-theme] .ref-auth-form-content > .ref-auth-intro { font-size:14px; line-height:1.6; margin:0 0 18px; }
+.ref-auth-page[data-theme] .ref-auth-roles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; width:100%; padding:6px; border-radius:14px; margin:0 0 18px; box-sizing:border-box; }
+.ref-auth-page[data-theme] .auth-role-indicator { display:none; }
+.ref-auth-page[data-theme] .ref-auth-roles > button { display:flex; align-items:center; justify-content:center; gap:6px; min-width:0; min-height:42px; padding:8px 6px; border-radius:10px; font-size:13px; }
+.ref-auth-page[data-theme] .ref-auth-roles > button[aria-pressed=true] { background:linear-gradient(110deg,#304d78,#62415d); color:#fff; box-shadow:0 2px 6px #061d3320; }
+.ref-auth-page[data-theme] .ref-auth-form { width:100%; min-width:0; gap:14px; }
+.ref-auth-page[data-theme] .ref-auth-registration { display:grid; grid-template-columns:minmax(0,1fr); }
+.ref-auth-page[data-theme] .ref-auth-field { min-width:0; }
+.ref-auth-page[data-theme] .ref-auth-field input { width:100%; min-width:0; font-size:16px; min-height:46px; box-sizing:border-box; }
+.ref-auth-page[data-theme] .ref-auth-password { min-width:0; width:100%; }
+.ref-auth-page[data-theme] .ref-auth-demo { flex-wrap:wrap; justify-content:center; gap:4px 10px; margin-top:18px; }
+.ref-auth-page[data-theme] .ref-auth-mode-link { flex-wrap:wrap; text-align:center; margin-top:16px; }
+.ref-auth-page[data-theme] .password-login-note { font-size:12px; line-height:1.5; }
+.ref-auth-page[data-theme] .ref-auth-submit { width:100%; min-height:46px; }
+.ref-auth-page[data-theme] :is(.ref-auth-alert,.password-guidelines) { min-width:0; overflow-wrap:break-word; }
+.ref-auth-page[data-theme] :is(button,a,input,summary):focus-visible { outline:2px solid #68899c; outline-offset:3px; }
+}
+/* Keep mobile account choices and header controls on one line. */
+@media(max-width:760px) {
+.ref-auth-page[data-theme] .ref-auth-roles { grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; padding:5px; }
+.ref-auth-page[data-theme] .ref-auth-roles > button { flex-direction:column; gap:5px; padding:8px 2px; font-size:11px; line-height:1.3; min-height:54px; }
+.ref-auth-page[data-theme] .ref-auth-roles > button > span { white-space:nowrap; }
+.ref-auth-page[data-theme] .ref-auth-topbar { grid-template-columns:minmax(0,1fr) 38px 38px; gap:8px; }
+.ref-auth-page[data-theme] .ref-auth-wordmark { grid-column:1; min-width:0; gap:7px; }
+.ref-auth-page[data-theme] .ref-auth-wordmark img { width:32px; height:32px; }
+.ref-auth-page[data-theme] .ref-auth-wordmark span { display:block; min-width:0; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ref-auth-page[data-theme] :is(.ref-auth-theme,.ref-auth-help) { display:flex; align-items:center; justify-content:center; width:38px; height:38px; min-height:38px; padding:0; margin:0; border-radius:11px; }
+.ref-auth-page[data-theme] .ref-auth-theme { font-size:0; }
+.ref-auth-page[data-theme] .ref-auth-theme::after { content:'☾'; font-size:21px; line-height:1; }
+.ref-auth-page[data-theme=dark] .ref-auth-theme::after { content:'☀'; }
+.ref-auth-page[data-theme] .ref-auth-help > span,.ref-auth-page[data-theme] .ref-auth-help > svg:last-child { display:none; }
+}
+/* One grouped mobile header keeps the school name and both actions together. */
+@media(max-width:760px) {
+.ref-auth-page[data-theme] .ref-auth-topbar { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; padding:14px; border:1px solid #68899c55; border-radius:18px; box-sizing:border-box; background:linear-gradient(120deg,#68899c20,#09355212 55%,#8f101b12),rgba(9,53,82,.88); box-shadow:0 5px 16px #061d331a,inset 0 1px 0 #ffffff20; }
+.ref-auth-page[data-theme=light] .ref-auth-topbar { background:linear-gradient(120deg,#68899c18,#ffffff20 55%,#8f101b0c),rgba(246,245,238,.94); }
+.ref-auth-page[data-theme] .ref-auth-topbar .ref-auth-wordmark { grid-column:1/-1; align-items:center; gap:10px; }
+.ref-auth-page[data-theme] .ref-auth-wordmark span { font-size:13px; line-height:1.45; white-space:normal; overflow:visible; text-overflow:clip; }
+.ref-auth-page[data-theme] .ref-auth-wordmark img { width:36px; height:36px; }
+.ref-auth-page[data-theme] .ref-auth-topbar .ref-auth-theme { grid-column:1; justify-self:start; width:auto; height:auto; min-height:38px; padding:8px 12px; font-size:12px; border-radius:10px; white-space:nowrap; }
+.ref-auth-page[data-theme] .ref-auth-theme::after { display:none; }
+.ref-auth-page[data-theme] .ref-auth-topbar .ref-auth-help { grid-column:2; width:auto; height:auto; min-height:38px; padding:8px 12px; gap:6px; font-size:12px; border-radius:10px; white-space:nowrap; }
+.ref-auth-page[data-theme] .ref-auth-help > span { display:inline; }
+}
+/* Mobile school identity and utilities belong inside the account-access card. */
+@media(max-width:760px) {
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar { order:-2; width:100%; max-width:none; margin:0; border:0; border-bottom:1px solid #68899c40; border-radius:0; padding:16px 20px; box-shadow:none; background:transparent; }
+}
+
+@media(max-width:760px) { .ref-auth-page[data-theme] > .auth-desktop-header { display:none; } }
+@media(min-width:761px) { .ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar { display:none; } }
+/* Icon-only appearance control; its accessible name follows the current mode. */
+.ref-auth-page[data-theme] .ref-auth-theme,
+.ref-auth-page[data-theme] .ref-auth-topbar .ref-auth-theme { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; min-height:40px; padding:0; flex-shrink:0; border-radius:12px; }
+.ref-auth-page[data-theme] .ref-auth-theme::after { display:none; }
+.ref-auth-page[data-theme] .ref-auth-theme svg { width:19px; height:19px; flex-shrink:0; }
+/* School identity at left; compact appearance and help actions at upper right. */
+@media(max-width:760px) {
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar { grid-template-columns:minmax(0,1fr) 40px 40px; gap:8px; align-items:start; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-wordmark { grid-column:1; grid-row:1; align-items:flex-start; gap:8px; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-wordmark span { font-size:12px; line-height:1.45; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-wordmark img { width:32px; height:32px; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-theme { grid-column:2; grid-row:1; width:40px; height:40px; padding:0; justify-self:end; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-help { grid-column:3; grid-row:1; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; min-height:40px; padding:0; border-radius:12px; justify-self:end; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-help > span,
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-help > svg:last-child { display:none; }
+.ref-auth-page[data-theme] .ref-auth-card > .ref-auth-topbar .ref-auth-help > svg:first-child { display:block; width:19px; height:19px; }
+}
+/* Promotional login/signup banner is reserved for tablets and larger screens. */
+@media(max-width:767px) {
+.ref-auth-page[data-theme] .ref-auth-card .ref-auth-brand-depth { display:none; }
+}
+/* Clear confirm/cancel hierarchy in reservation dialogs. */
+.reference-shell[data-theme="light"].modal-portal-root .modal.confirm-reservation-modal {
+ background-color:var(--neo-surface)!important;
+ background-image:linear-gradient(135deg,rgba(104,137,156,.12),rgba(217,11,26,.06) 55%,rgba(9,53,82,.08))!important;
+}
+.reference-shell[data-theme="dark"].modal-portal-root .modal.confirm-reservation-modal {
+ background-color:var(--neo-surface)!important;
+ background-image:linear-gradient(135deg,rgba(104,137,156,.18),rgba(143,16,27,.12) 55%,rgba(9,53,82,.16))!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal {
+	display:flex;
+	flex-direction:column;
+	overflow:hidden;
+	scrollbar-gutter:auto;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal > .modal-header {
+	flex:0 0 auto;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal > .modal-body {
+	min-height:0;
+	overflow-y:auto;
+	flex:1 1 auto;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button.primary,
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button.primary:is(:hover,:focus,:active,:disabled) {
+ background-color:#414c70!important;
+ background-image:linear-gradient(110deg,#304d78 0%,#414c70 38%,#62415d 68%,#7b3c50 100%)!important;
+ color:#fff!important;
+ border:1px solid #ffffff45!important;
+ opacity:1;
+ box-shadow:4px 4px 8px var(--neo-shadow),-3px -3px 7px var(--neo-light),inset 0 1px 0 #ffffff30!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button.primary:not(:disabled):hover {
+ background-image:linear-gradient(110deg,#3b5b8a 0%,#505a80 38%,#744e6d 68%,#90485e 100%)!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button.danger,
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button.danger:is(:hover,:focus,:active,:disabled) {
+ background-color:#a52c3d!important;
+ background-image:linear-gradient(110deg,#c84558,#a52c3d 58%,#8f101b)!important;
+ border:1px solid #a52c3d!important;
+ color:#fff!important;
+ box-shadow:0 3px 8px #8f101b30!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button.danger:not(:disabled):hover {
+ background-image:linear-gradient(110deg,#b83a4d,#941d2d 58%,#76121d)!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal.confirm-reservation-modal .modal-footer .button:disabled {
+ opacity:.68;
+ cursor:not-allowed;
+}
+/* Office/service and appointment schedule share a compact detail row. */
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment { display:flex; align-items:center; justify-content:space-between; gap:12px 20px; flex-wrap:wrap; margin:12px 0; }
+.live-queue-appointment .live-queue-service { flex:1 1 110px; min-width:0; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-service h2 { margin:0 0 4px; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-service p { margin:0; font-size:14px; line-height:1.5; overflow-wrap:break-word; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .ref-next-schedule { display:flex; align-items:center; gap:8px; flex:0 1 auto; margin:0; font-size:13px; line-height:1.5; }
+.live-queue-appointment .ref-next-schedule > svg { flex-shrink:0; }
+.live-queue-appointment .ref-next-schedule > span { display:block; }
+.live-queue-appointment .ref-next-schedule small { display:block; font-size:inherit; color:inherit; }
+/* Schedule aligns with the office heading, above the service name. */
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 14px; align-items:start; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .live-queue-service { display:contents; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-service h2 { grid-column:1; grid-row:1; margin:0; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-service p { grid-column:1/-1; grid-row:2; margin:0; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .ref-next-schedule { grid-column:2; grid-row:1; align-self:start; margin:0; }
+@media(max-width:360px) { .reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment { column-gap:8px; } .reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .ref-next-schedule { font-size:12px; gap:5px; } }
+/* Profile save follows the established primary-action gradient. */
+.reference-shell[data-theme] .profile-page .profile-panel > .button.primary { background:linear-gradient(110deg,#304d78 0%,#414c70 38%,#62415d 68%,#7b3c50 100%); color:#fff; border:1px solid #ffffff30; box-shadow:0 4px 10px #10203c30,inset 0 1px 0 #ffffff25; }
+.reference-shell[data-theme] .profile-page .profile-panel > .button.primary:not(:disabled):hover { background:linear-gradient(110deg,#3b5b8a 0%,#505a80 38%,#744e6d 68%,#90485e 100%); color:#fff; }
+.reference-shell[data-theme] .profile-page .profile-panel > .button.primary:active { box-shadow:inset 2px 2px 5px #10203c55; }
+.reference-shell[data-theme] .profile-page .profile-panel > .button.primary:disabled { opacity:.55; cursor:not-allowed; box-shadow:none; }
+/* Readable Manage Availability typography, scoped away from dashboard history. */
+.reference-shell[data-theme] .staff-availability .panel-header h2 { font-size:20px; line-height:1.4; font-weight:650; }
+.reference-shell[data-theme] .staff-availability .availability-row strong { font-size:17px; line-height:1.5; font-weight:600; }
+.reference-shell[data-theme] .staff-availability :is(.page-subtitle,.panel-header p,.availability-row small,.notice,.muted,.walkin-confirm) { font-size:16px; line-height:1.6; }
+.reference-shell[data-theme] .staff-availability .field > label { font-size:16px; line-height:1.5; min-height:24px; }
+.reference-shell[data-theme] .staff-availability .field :is(input,select) { font-size:16px; }
+.reference-shell[data-theme] .staff-availability .hourly-controls form > p { font-size:16px; line-height:1.6; }
+.reference-shell[data-theme] .staff-availability .time-button { font-size:16px; }
+.reference-shell[data-theme] .staff-availability .time-button small { font-size:14px; }
+.reference-shell[data-theme] .staff-availability .account-form > p.muted { font-size:15px!important; }
+.reference-shell[data-theme] .staff-availability .availability-row > div:first-child { min-width:0; }
+/* Only the dashboard office card shrinks; recent queue keeps its existing rules. */
+.reference-shell[data-theme] .ref-dashboard-focused .staff-office-availability { min-height:0; height:auto; align-self:start; padding:18px 20px; gap:0; }
+.reference-shell[data-theme] .ref-dashboard-focused .staff-office-availability header { margin:0 0 12px; }
+.reference-shell[data-theme] .ref-dashboard-focused .staff-office-availability > h2 { font-size:23px; line-height:1.3; margin:0 0 8px; }
+.reference-shell[data-theme] .ref-dashboard-focused .staff-office-availability > p { font-size:15px; line-height:1.5; margin:0 0 14px; }
+.reference-shell[data-theme] .ref-dashboard-focused .staff-office-availability > .button { margin:0; min-height:38px; padding:9px 13px; font-size:14px; }
+@media(max-width:600px) {
+.reference-shell[data-theme] .staff-availability .panel-header { gap:12px; flex-wrap:wrap; }
+.reference-shell[data-theme] .staff-availability .availability-row { gap:12px; flex-wrap:wrap; }
+.reference-shell[data-theme] .staff-availability .availability-row > div:first-child { flex:1 1 170px; }
+.reference-shell[data-theme] .staff-availability .availability-toggle { flex-shrink:0; }
+}
+.reference-shell[data-theme] .queue-date-shortcuts { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:0 0 16px; color:var(--palette-muted); font-size:14px; }
+.queue-date-shortcuts > span { margin-right:auto; }
+.reference-shell[data-theme] .queue-date-shortcuts .button[aria-pressed=true] { border-color:#68899c; background:#68899c20; font-weight:650; }
+/* Keep the consent checkbox aligned with the first line of its label. */
+.reference-shell[data-theme] .staff-availability .walkin-confirm { display:flex; align-items:flex-start; gap:10px; text-align:left; }
+.reference-shell[data-theme] .staff-availability .walkin-confirm > input[type=checkbox] { display:block; flex:0 0 18px; width:18px; height:18px; min-height:18px; max-height:18px; padding:0; margin:4px 0 0; }
+.reference-shell[data-theme] .staff-availability .walkin-confirm > span { display:block; flex:1; min-width:0; margin:0; line-height:1.6; }
+/* Staff forms use the same glass surfaces and controls as the student portal. */
+.reference-shell[data-theme] :is(.staff-availability,.accounts-page,.verify-section) { --staff-form-radius:12px; }
+.reference-shell[data-theme] .staff-availability :is(.panel,.availability-card) { background:var(--campus-glass-gradient),var(--campus-card); border:1px solid var(--campus-line); border-radius:18px; box-shadow:0 5px 16px #061d3314,inset 0 1px 0 #ffffff18; overflow:hidden; }
+.reference-shell[data-theme] .staff-availability .panel-header { background:transparent; border-color:var(--campus-line); }
+.reference-shell[data-theme] .staff-availability .panel-header h2 { color:var(--palette-ink); }
+.reference-shell[data-theme] .staff-availability :is(.form-grid,.hourly-controls .panel:last-child .form-grid) { display:grid; gap:18px; align-items:start; min-width:0; }
+.reference-shell[data-theme] .staff-availability .form-grid > .field { display:flex; flex-direction:column; gap:7px; min-width:0; }
+.reference-shell[data-theme] .staff-availability .field > label { color:var(--palette-ink); font-size:16px; font-weight:600; line-height:1.5; }
+.reference-shell[data-theme] .staff-availability .field :is(input:not([type=checkbox]):not([type=radio]),select) { display:block; width:100%; min-width:0; min-height:46px; padding:11px 14px; border:1px solid var(--campus-line); border-radius:12px; font-family:inherit; font-size:16px; color:var(--palette-ink); background:linear-gradient(120deg,#68899c0c,#8f101b06),var(--campus-frame); box-shadow:inset 0 1px 3px #061d3310; box-sizing:border-box; }
+.reference-shell[data-theme] .staff-availability .field :is(input,select):focus-visible { outline:2px solid #68899c; outline-offset:3px; border-color:#68899c; }
+.reference-shell[data-theme] .staff-availability .field :is(input,select):disabled { color:var(--palette-muted); background:var(--campus-card); cursor:not-allowed; box-shadow:none; }
+.reference-shell[data-theme] .staff-availability .field input::placeholder { color:var(--palette-muted); opacity:.8; }
+.reference-shell[data-theme] .staff-availability :is(.panel-header p,.availability-row small,.muted) { color:var(--palette-muted); }
+.reference-shell[data-theme] .staff-availability .availability-row { border-color:var(--campus-line); }
+.reference-shell[data-theme] .staff-availability .actions { gap:12px; margin-top:16px; }
+.reference-shell[data-theme] .staff-availability form .button.primary { background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50); color:#fff; border:1px solid #ffffff30; border-radius:12px; box-shadow:0 4px 10px #10203c25; }
+.reference-shell[data-theme] .staff-availability form .button.secondary { background:var(--campus-glass-gradient),var(--campus-card); color:var(--palette-ink); border:1px solid var(--campus-line); border-radius:12px; }
+.reference-shell[data-theme] .staff-availability form .button:disabled { opacity:.55; cursor:not-allowed; box-shadow:none; }
+@media(max-width:767px) {
+.reference-shell[data-theme] .staff-availability :is(.account-form > .form-grid,.form-grid,.hourly-controls .panel:last-child .form-grid) { grid-template-columns:minmax(0,1fr); max-width:none; gap:16px; }
+.reference-shell[data-theme] .staff-availability .actions > .button { flex:1 1 auto; justify-content:center; }
+}
+/* A distinct raised primary action makes the hourly limit save control clear. */
+/* Gradient framing groups staff form fields without changing their controls. */
+.reference-shell[data-theme] .staff-availability :is(.account-form > .form-grid,.hourly-controls form > .form-grid) { padding:18px; border:1px solid transparent; border-radius:16px; background:linear-gradient(120deg,var(--campus-frame),var(--campus-frame)) padding-box,linear-gradient(115deg,#68899c99,#09355266 48%,#8f101b80) border-box; box-shadow:0 4px 12px #061d330c,inset 0 1px 0 #ffffff18; box-sizing:border-box; }
+.reference-shell[data-theme=dark] .staff-availability :is(.account-form > .form-grid,.hourly-controls form > .form-grid) { background:linear-gradient(120deg,var(--campus-frame),var(--campus-frame)) padding-box,linear-gradient(115deg,#91b9d499,#68899c66 48%,#bd718480) border-box; }
+@media(max-width:600px) { .reference-shell[data-theme] .staff-availability :is(.account-form > .form-grid,.hourly-controls form > .form-grid) { padding:14px; border-radius:14px; } }
+/* Light mode needs enough tint for the gradient frame to remain visible. */
+.reference-shell[data-theme=light] .staff-availability :is(.account-form > .form-grid,.hourly-controls form > .form-grid) { border:2px solid transparent; background:linear-gradient(115deg,#e3ecf3,#f1edf0 55%,#f4e4e7) padding-box,linear-gradient(115deg,#68899c,#345d7b 45%,#a44b5b) border-box; box-shadow:0 4px 12px #345d7b14,inset 0 1px 0 #ffffffa0; }
+/* Keep Save Limit's normal color and elevation when the pointer hovers. */
+/* Admit Walk-in shares the steady primary-action gradient. */
+.reference-shell[data-theme] .staff-availability .hourly-controls form .admit-walkin-button,
+.reference-shell[data-theme] .staff-availability .hourly-controls form .admit-walkin-button:hover { background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50); color:#fff; border:1px solid #ffffff45; border-radius:12px; font-size:16px; font-weight:700; box-shadow:0 5px 12px #061d3333,inset 0 1px 0 #ffffff35; filter:none; transform:none; }
+.reference-shell[data-theme] .staff-availability .hourly-controls form .admit-walkin-button:not(:disabled):active { box-shadow:inset 2px 2px 5px #061d3344; }
+.reference-shell[data-theme] .staff-availability .hourly-controls form .admit-walkin-button:disabled { opacity:.55; cursor:not-allowed; box-shadow:none; }
+/* One stable Save Limit appearance in every pointer state. */
+.reference-shell[data-theme] .staff-availability .hourly-controls form .button.save-limit-button,
+.reference-shell[data-theme] .staff-availability .hourly-controls form .button.save-limit-button:hover,
+.reference-shell[data-theme] .staff-availability .hourly-controls form .button.save-limit-button:disabled { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:11px 22px; border:1px solid #ffffff45; border-radius:12px; background-color:#414c70; background-image:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important; color:#fff; font-size:16px; font-weight:700; filter:none; transform:none; transition:none; box-shadow:0 5px 12px #061d3333,inset 0 1px 0 #ffffff35; cursor:pointer; }
+.reference-shell[data-theme] .staff-availability .hourly-controls form .button.save-limit-button:disabled,
+.reference-shell[data-theme] .staff-availability .hourly-controls form .button.save-limit-button:disabled:hover { opacity:.55; cursor:not-allowed; filter:none; transform:none; box-shadow:none; }
+/* Inset text controls retain readable values in both appearance modes. */
+.reference-shell[data-theme=light],.ref-auth-page[data-theme=light] { --input-neo-fill:#eaf0f3; --input-neo-shadow:#bbcbd6; --input-neo-highlight:#ffffff; --input-neo-border:#a9becb; --input-neo-text:#12374d; --input-neo-muted:#526e7f; }
+.reference-shell[data-theme=dark],.ref-auth-page[data-theme=dark] { --input-neo-fill:#173247; --input-neo-shadow:#0a1e2d; --input-neo-highlight:#2a4b62; --input-neo-border:#68899c; --input-neo-text:#f0f5f8; --input-neo-muted:#c2d2df; }
+.reference-shell[data-theme] .field :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=range]),textarea),
+.reference-shell[data-theme] .staff-availability .field input:not([type=checkbox]):not([type=radio]),
+.reference-shell[data-theme].modal-portal-root .modal input:not([type=checkbox]):not([type=radio]):not([type=file]),
+.ref-auth-page[data-theme] .ref-auth-form .ref-auth-field input { background:var(--input-neo-fill); color:var(--input-neo-text); border:1px solid var(--input-neo-border); border-radius:12px; box-shadow:inset 4px 4px 8px var(--input-neo-shadow),inset -4px -4px 8px var(--input-neo-highlight); }
+.reference-shell[data-theme] .field :is(input,textarea)::placeholder,
+.ref-auth-page[data-theme] .ref-auth-field input::placeholder { color:var(--input-neo-muted); opacity:.85; }
+.reference-shell[data-theme] .field :is(input,textarea):focus-visible,
+.ref-auth-page[data-theme] .ref-auth-form .ref-auth-field input:focus-visible { outline:2px solid #68899c; outline-offset:3px; }
+.reference-shell[data-theme] .field input:disabled,
+.reference-shell[data-theme] .staff-availability .field input:disabled { color:var(--input-neo-muted); -webkit-text-fill-color:var(--input-neo-muted); opacity:.7; box-shadow:inset 2px 2px 4px var(--input-neo-shadow),inset -2px -2px 4px var(--input-neo-highlight); }
+/* All native selection controls share the inset treatment used by text fields. */
+.reference-shell[data-theme] select,
+.ref-auth-page[data-theme] select,
+.reference-shell[data-theme] .staff-availability .field select,
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-picker select,
+.reference-shell[data-theme].modal-portal-root .modal select { background-color:var(--input-neo-fill); background-image:none; color:var(--input-neo-text); border:1px solid var(--input-neo-border); border-radius:12px; box-shadow:inset 4px 4px 8px var(--input-neo-shadow),inset -4px -4px 8px var(--input-neo-highlight); font-family:inherit; cursor:pointer; }
+.reference-shell[data-theme] select:focus-visible,
+.ref-auth-page[data-theme] select:focus-visible { outline:2px solid #68899c; outline-offset:3px; }
+.reference-shell[data-theme] select:disabled,
+.reference-shell[data-theme] .staff-availability .field select:disabled,
+.ref-auth-page[data-theme] select:disabled { color:var(--input-neo-muted); background-color:var(--input-neo-fill); opacity:.7; cursor:not-allowed; box-shadow:inset 2px 2px 4px var(--input-neo-shadow),inset -2px -2px 4px var(--input-neo-highlight); }
+.reference-shell[data-theme] select option,
+.ref-auth-page[data-theme] select option { color:var(--input-neo-text); background:var(--input-neo-fill); }
+/* Standalone text/search/date controls receive the same finish as field inputs. */
+.reference-shell[data-theme] :is(input[type=text],input[type=search],input[type=date],input[type=time],input[type=number],input[type=email],input[type=password],textarea),
+.ref-auth-page[data-theme] :is(input[type=text],input[type=email],input[type=password],textarea) { background-color:var(--input-neo-fill); color:var(--input-neo-text); border-color:var(--input-neo-border); border-radius:12px; box-shadow:inset 4px 4px 8px var(--input-neo-shadow),inset -4px -4px 8px var(--input-neo-highlight); }
+/* Shared control depth for every account and portal dialog. */
+:is(.reference-shell,.ref-auth-page)[data-theme] :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=range]):not([type=submit]):not([type=button]):not([type=hidden]),textarea,select) {
+ background-color:var(--input-neo-fill); color:var(--input-neo-text); border:1px solid var(--input-neo-border); border-radius:12px;
+ box-shadow:inset 4px 4px 8px var(--input-neo-shadow),inset -4px -4px 8px var(--input-neo-highlight);
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] :is(input,textarea)::placeholder { color:var(--input-neo-muted); opacity:.85; }
+:is(.reference-shell,.ref-auth-page)[data-theme] :is(.button,.ref-auth-submit) {
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight),inset 0 1px 0 #ffffff25;
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] :is(.button,.ref-auth-submit):not(:disabled):active {
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow),inset -2px -2px 5px var(--input-neo-highlight);
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] :is(.button,.ref-auth-submit):disabled { box-shadow:none; opacity:.55; cursor:not-allowed; }
+.reference-shell[data-theme].modal-portal-root .modal {
+ background:var(--input-neo-fill); color:var(--input-neo-text); border:1px solid var(--input-neo-border); border-radius:24px;
+ box-shadow:14px 14px 40px #061d3340,inset 1px 1px 1px var(--input-neo-highlight);
+}
+.reference-shell[data-theme].modal-portal-root .modal :is(.button.secondary,.modal-header > .button) {
+ background:var(--input-neo-fill); color:var(--input-neo-text);
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-4px -4px 8px var(--input-neo-highlight);
+}
+.reference-shell[data-theme].modal-portal-root .modal :is(.button.secondary,.modal-header > .button):not(:disabled):active {
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow),inset -3px -3px 6px var(--input-neo-highlight);
+}
+.reference-shell[data-theme].modal-portal-root .modal .button:disabled { box-shadow:none; }
+/* Help Center search matches the rounded blue reference in every account. */
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box {
+ display:flex; align-items:center; gap:12px; min-height:66px; padding:7px 18px 7px 8px;
+ border:2px solid #eef6ff; border-radius:999px;
+ background:linear-gradient(180deg,#639fff,#5595f5);
+ box-shadow:0 14px 24px #3879d52b,inset 0 1px 3px #ffffff30;
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-symbol {
+ display:grid; place-items:center; flex:0 0 48px; width:48px; height:48px; border-radius:50%;
+ background:#fff; color:#609fff; box-shadow:0 2px 4px #326ac51a;
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box input[type=search] {
+ flex:1; min-width:0; width:100%; min-height:44px; padding:8px 0; border:0; border-radius:0;
+ background:transparent; color:#102f59; box-shadow:none; font-size:15px; outline:none;
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box input[type=search]::placeholder { color:#183b68; opacity:1; }
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box:focus-within {
+ outline:3px solid #234f85; outline-offset:4px; box-shadow:0 14px 24px #3879d52b,inset 0 1px 3px #ffffff30;
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box > .help-search-mic { flex-shrink:0; color:#fff; stroke-width:2; }
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box button {
+ width:32px; height:32px; min-height:32px; border-radius:50%; background:#ffffff26; color:#fff;
+}
+@media(max-width:600px) {
+ :is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box { gap:8px; padding-right:12px; min-height:60px; }
+ :is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-symbol { flex-basis:40px; width:40px; height:40px; }
+ :is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box input[type=search] { font-size:14px; }
+}
+/* Use the portal palette with the reference search shape. */
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50);
+ border-color:#d7e4ee; box-shadow:0 10px 22px #102b4529,inset 0 1px 2px #ffffff35;
+}
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-symbol { color:#304d78; background:#f2f6fa; }
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box input[type=search] { color:#fff; }
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box input[type=search]::placeholder { color:#e0e8f2; }
+:is(.reference-shell,.ref-auth-page)[data-theme] .help-center .help-search-box:focus-within { outline-color:#8eb4d3; box-shadow:0 10px 22px #102b4529,inset 0 1px 2px #ffffff35; }
+/* Keep the editable area flush with its outer search capsule. */
+:is(.reference-shell,.ref-auth-page,.public-help-page) .help-center .help-search-box input[type=search],
+:is(.reference-shell,.ref-auth-page,.public-help-page) .help-center .help-search-box input[type=search]:focus {
+ background:transparent!important; border:0!important; box-shadow:none!important; outline:none!important; border-radius:0!important;
+}
+/* Balanced quick-guide actions across the three account-specific steps. */
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-guide-grid .help-action {
+ display:flex; align-items:center; justify-content:space-between; gap:12px;
+ width:100%; min-height:48px; padding:10px 14px; box-sizing:border-box; margin-top:auto;
+ font-size:16px!important; font-weight:700!important; line-height:1.4;
+ border:1px solid #68899c66; border-radius:12px; background:var(--input-neo-fill,#eaf0f3); color:var(--input-neo-text,#12374d);
+ box-shadow:3px 3px 7px var(--input-neo-shadow,#bbcbd6),-2px -2px 5px var(--input-neo-highlight,#ffffff);
+ text-align:left;
+}
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-guide-grid .help-action svg { width:20px; height:20px; flex-shrink:0; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-guide-grid .help-action:active { box-shadow:inset 2px 2px 5px var(--input-neo-shadow,#bbcbd6); }
+/* Topic heading shares one clean left edge. */
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-topics .help-section-heading > div { display:flex; flex-direction:column; align-items:flex-start; gap:6px; text-align:left; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-topics :is(.help-eyebrow,h2) { margin:0; padding:0; }
+.help-center .help-faq-section h2 { scroll-margin-top:100px; }
+/* Keep booking actions readable with the shared primary gradient. */
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-primary-action,
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-primary-action:hover {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50); color:#fff; border:1px solid #ffffff45; font-size:16px; font-weight:700;
+}
+/* Raised FAQ controls and inset selected categories in both themes. */
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center :is(.help-filter-chips button,.help-faq h3 > button) {
+ background:var(--input-neo-fill,#eaf0f3); color:var(--input-neo-text,#12374d); border:1px solid var(--input-neo-border,#a9becb); border-radius:12px;
+ box-shadow:4px 4px 8px var(--input-neo-shadow,#bbcbd6),-3px -3px 7px var(--input-neo-highlight,#ffffff);
+}
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center :is(.help-filter-chips button.is-active,.help-faq.is-open h3 > button) {
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow,#bbcbd6),inset -3px -3px 6px var(--input-neo-highlight,#ffffff);
+}
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-filter-chips { gap:12px; }
+/* Reserve separate columns so ticket icons never crowd reservation text. */
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-row {
+ display:grid; grid-template-columns:38px minmax(0,1fr) 18px; grid-template-rows:auto auto;
+ gap:8px 14px; align-items:center; padding:14px; width:100%; box-sizing:border-box;
+}
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-row > .ref-recent-symbol {
+ grid-column:1; grid-row:1; display:grid; place-items:center; width:38px; height:38px; margin:0; padding:0; flex-shrink:0;
+}
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-symbol svg { display:block; width:20px; height:20px; margin:0; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-row > span:nth-child(2) { grid-column:2; grid-row:1; min-width:0; width:auto; margin:0; overflow-wrap:anywhere; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-row > .ref-recent-status { grid-column:2 / 4; grid-row:2; justify-self:start; max-width:100%; white-space:normal; }
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-recent-row > svg { grid-column:3; grid-row:1; margin:0; align-self:center; }
+/* Center the office and appointment date together, with service underneath. */
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment {
+ grid-template-columns:minmax(0,max-content) minmax(0,max-content); justify-content:center; align-items:center; gap:6px 20px; text-align:center;
+}
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .ref-next-schedule { align-self:center; justify-content:center; min-width:0; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .live-queue-service h2 { align-self:center; min-width:0; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .live-queue-service p { text-align:center; }
+@media(max-width:360px) { .reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment { column-gap:10px; } }
+/* Two centered appointment columns: office/service and date/time. */
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment {
+ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center;
+ width:100%; max-width:480px; margin:16px auto; gap:12px 24px; text-align:left;
+}
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .live-queue-service {
+ display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:4px; grid-column:1; grid-row:1; min-width:0; justify-self:center;
+}
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .live-queue-service h2 { margin:0; align-self:auto; line-height:1.5; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .live-queue-service p { margin:0; text-align:left; line-height:1.5; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .ref-next-schedule {
+ grid-column:2; grid-row:1; display:flex; align-items:center; justify-content:flex-start; justify-self:center; gap:8px; margin:0; line-height:1.5;
+}
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment .ref-next-schedule small { display:block; margin-top:4px; line-height:1.5; }
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-counts {
+ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:stretch; gap:24px; padding:16px 0; margin:12px 0;
+}
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-counts > span {
+ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; min-width:0; text-align:center; line-height:1.5;
+}
+.reference-shell[data-theme] .student-compact-dashboard .live-queue-counts > span strong { display:block; line-height:1.2; }
+@media(max-width:360px) {
+ .reference-shell[data-theme] .student-compact-dashboard .live-queue-appointment,
+ .reference-shell[data-theme] .student-compact-dashboard .live-queue-counts { column-gap:12px; }
+}
+/* Dashboard View actions stay unboxed in every interaction state. */
+.reference-shell[data-theme] .ref-dashboard :is(.ref-text-button,.dashboard-view-action),
+.reference-shell[data-theme] .ref-dashboard :is(.ref-text-button,.dashboard-view-action):is(:hover,:active) {
+ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:6px 0;
+ background:transparent!important; border:0!important; box-shadow:none!important; border-radius:0;
+ color:var(--dashboard-blue); font:inherit; font-size:14px; font-weight:650; cursor:pointer; transform:none;
+}
+.reference-shell[data-theme] .ref-dashboard :is(.ref-text-button,.dashboard-view-action):hover { text-decoration:underline; text-underline-offset:4px; }
+.reference-shell[data-theme] .ref-dashboard .dashboard-view-action { margin:8px auto 0; }
+/* Stretch queue sections across the card so their centers match the card. */
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-ticket-heading {
+ display:flex; flex-direction:column; align-items:center; justify-content:center; align-self:stretch; width:100%; gap:8px; margin:8px 0 0; text-align:center;
+}
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .ref-next-queue { display:block; margin:0; width:100%; text-align:center; line-height:1.3; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-counts {
+ width:100%; align-self:stretch; box-sizing:border-box; grid-template-columns:minmax(0,1fr) minmax(0,1fr); text-align:center;
+}
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-counts > span {
+ width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:6px;
+}
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-counts > p { text-align:center; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card > .dashboard-view-action {
+ display:flex; align-self:center; align-items:center; justify-content:center; width:fit-content; max-width:100%; margin:12px auto 0; padding:8px 4px; gap:8px; font-size:16px; line-height:1.5; text-align:center;
+}
+/* View all is plain text and an arrow, without a surrounding surface. */
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-section-header > button.ref-text-button,
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-section-header > button.ref-text-button:is(:hover,:focus,:active) {
+ background:transparent!important; background-image:none!important; border:none!important; box-shadow:none!important; border-radius:0!important; padding:0!important; backdrop-filter:none!important;
+}
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-section-header > button.ref-text-button::before,
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-section-header > button.ref-text-button::after { content:none!important; display:none!important; }
+/* Compact live queue rhythm with a rounded raised action. */
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card { padding:16px 18px; justify-content:flex-start; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card header { margin-bottom:6px; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-ticket-heading { margin:2px 0 0; gap:4px; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-status { padding:3px 10px; line-height:1.3; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-appointment { margin:10px auto; row-gap:4px; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-appointment .live-queue-service { gap:2px; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-appointment .ref-next-schedule small { margin-top:2px; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-counts { margin:4px 0; padding:8px 0; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card .live-queue-counts > span { gap:2px; line-height:1.35; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card > button.dashboard-view-action:not(.switch):not(.reference-brand):not(.nav-item),
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card > button.dashboard-view-action:not(.switch):not(.reference-brand):not(.nav-item):is(:hover,:focus-visible) {
+ width:auto; min-height:40px; margin:8px auto 0; padding:8px 18px; box-sizing:border-box;
+ border-radius:12px!important; border:1px solid var(--input-neo-border)!important;
+ background-color:#414c70!important; background-image:var(--button-action-gradient)!important; color:#fff!important;
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight),inset 0 1px 0 #ffffff30!important;
+ font-size:15px; font-weight:650; line-height:1.4; text-decoration:none;
+ filter:none!important;
+}
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card > .dashboard-view-action:focus-visible { outline:3px solid var(--dashboard-blue); outline-offset:3px; }
+.reference-shell[data-theme] .student-compact-dashboard .ref-next-card > .dashboard-view-action:active {
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow),inset -3px -3px 6px var(--input-neo-highlight)!important;
+}
+.reference-shell[data-theme] .reservation-booking .office-panel .office-card,
+.reference-shell[data-theme] .reservation-booking .service-panel .service-card {
+ background:var(--input-neo-fill)!important; color:var(--input-neo-text);
+ border:1px solid var(--input-neo-border); border-radius:14px;
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight)!important;
+ transition:box-shadow .18s,border-color .18s,background-color .18s;
+}
+.reference-shell[data-theme] .reservation-booking .office-panel .office-card:not(:disabled):hover,
+.reference-shell[data-theme] .reservation-booking .service-panel .service-card:not(.unavailable):hover {
+ transform:none; border-color:var(--brand-slate);
+ box-shadow:5px 5px 10px var(--input-neo-shadow),-3px -3px 8px var(--input-neo-highlight)!important;
+}
+.reference-shell[data-theme] .reservation-booking .office-panel .office-card.selected,
+.reference-shell[data-theme] .reservation-booking .service-panel .service-card.selected {
+ background:var(--input-neo-fill)!important; border:1px solid var(--brand-slate);
+ box-shadow:inset 4px 4px 8px var(--input-neo-shadow),inset -4px -4px 8px var(--input-neo-highlight)!important;
+}
+.reference-shell[data-theme] .reservation-booking .office-panel .office-card:disabled,
+.reference-shell[data-theme] .reservation-booking .service-panel .service-card.unavailable {
+ background:var(--input-neo-fill)!important; color:var(--input-neo-muted); border-color:var(--input-neo-border);
+ box-shadow:inset 2px 2px 4px var(--input-neo-shadow),inset -2px -2px 4px var(--input-neo-highlight)!important;
+ opacity:.58; cursor:not-allowed;
+}
+.reference-shell[data-theme] .reservation-booking .service-card:has(input:focus-visible) {
+ outline:3px solid var(--brand-slate); outline-offset:3px;
+}
+.reference-shell[data-theme] .reservation-booking .service-selection-toolbar > button:not(:disabled) {
+ background:var(--input-neo-fill)!important; color:var(--input-neo-text);
+ border:1px solid var(--input-neo-border); border-radius:12px;
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight)!important;
+}
+.reference-shell[data-theme] .reservation-booking .service-selection-toolbar > button:not(:disabled):hover {
+ transform:none; border-color:var(--brand-slate);
+ box-shadow:5px 5px 10px var(--input-neo-shadow),-3px -3px 8px var(--input-neo-highlight)!important;
+}
+.reference-shell[data-theme] .reservation-booking .service-selection-toolbar > button.is-multiple:not(:disabled) {
+ background:var(--input-neo-fill)!important; color:var(--input-neo-text); border-color:var(--brand-slate);
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow),inset -3px -3px 6px var(--input-neo-highlight)!important;
+}
+.reference-shell[data-theme] .reservation-booking .service-selection-toolbar > button:focus-visible { outline:3px solid var(--brand-slate); outline-offset:3px; }
+/* Consistent soft depth for Help search and every account dialog. */
+.public-help-page { --input-neo-fill:#eaf0f3; --input-neo-shadow:#bbcbd6; --input-neo-highlight:#fff; --input-neo-text:#12374d; --input-neo-border:#a9becb; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-search-box,
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-search-box:focus-within {
+ border-radius:999px; box-shadow:6px 6px 12px var(--input-neo-shadow),-5px -5px 12px var(--input-neo-highlight),inset 3px 3px 7px #10243e66,inset -2px -2px 5px #ffffff30;
+}
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-search-symbol {
+ box-shadow:3px 3px 7px #122b4d55,-2px -2px 6px #ffffff45,inset 1px 1px 2px #fff;
+}
+.reference-shell[data-theme] .public-help-page .help-center .help-search-box,
+.reference-shell[data-theme] .public-help-page .help-center .help-search-box:focus-within {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50);
+ border:2px solid #d7e4ee; border-radius:999px;
+ box-shadow:6px 6px 12px var(--input-neo-shadow),-5px -5px 12px var(--input-neo-highlight),inset 3px 3px 7px #10243e66,inset -2px -2px 5px #ffffff30;
+}
+.reference-shell[data-theme] .public-help-page .help-center .help-search-box:focus-within {
+ outline:3px solid #8eb4d3; outline-offset:4px;
+}
+.reference-shell[data-theme] .public-help-page .help-center .help-search-box input,
+.reference-shell[data-theme] .public-help-page .help-center .help-search-box input:focus {
+ color:var(--input-neo-text)!important; caret-color:var(--input-neo-text);
+}
+.reference-shell[data-theme] .public-help-page .help-center .help-search-box input::placeholder { color:#e0e8f2!important; }
+.reference-shell[data-theme] .public-help-page .help-center .help-search-symbol {
+ color:#304d78; background:#f2f6fa;
+ box-shadow:3px 3px 7px #122b4d55,-2px -2px 6px #ffffff45,inset 1px 1px 2px #fff!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal:is(.ticket-modal,:not(.ticket-modal)) {
+ background:var(--input-neo-fill); color:var(--input-neo-text); border:1px solid var(--input-neo-border); border-radius:24px; backdrop-filter:none;
+ box-shadow:12px 12px 30px #061d3355,-5px -5px 18px color-mix(in srgb,var(--input-neo-highlight) 30%,transparent),inset 2px 2px 4px var(--input-neo-highlight),inset -2px -2px 4px var(--input-neo-shadow);
+}
+.reference-shell[data-theme].modal-portal-root .modal:is(.ticket-modal,:not(.ticket-modal)) :is(.modal-header,.modal-footer) {
+ background:var(--input-neo-fill); color:var(--input-neo-text); border-color:var(--input-neo-border);
+}
+.reference-shell[data-theme].modal-portal-root .modal:is(.ticket-modal,:not(.ticket-modal)) .button {
+ border-radius:12px; box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight),inset 0 1px 0 #ffffff30;
+}
+.reference-shell[data-theme].modal-portal-root .modal:is(.ticket-modal,:not(.ticket-modal)) .button:not(:disabled):active {
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow),inset -3px -3px 6px var(--input-neo-highlight);
+}
+.reference-shell[data-theme].modal-portal-root .modal:is(.ticket-modal,:not(.ticket-modal)) .button:disabled { box-shadow:none; opacity:.55; }
+/* Neumorphic on/off tracks with a raised sliding thumb. */
+.reference-shell[data-theme] .switch::before {
+ background:var(--input-neo-fill); border:1px solid var(--input-neo-border); border-radius:999px;
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow),inset -3px -3px 6px var(--input-neo-highlight);
+}
+.reference-shell[data-theme] .switch.enabled::before {
+ background:linear-gradient(120deg,#304d78,#62415d); border-color:#68899c;
+ box-shadow:inset 3px 3px 6px #061d3366,inset -2px -2px 5px #ffffff30;
+}
+.reference-shell[data-theme] .switch .switch-knob {
+ background:linear-gradient(145deg,#fff,#d5e1e9); border:1px solid #f4f8fb; box-sizing:border-box;
+ box-shadow:2px 2px 4px #061d3355,-1px -1px 3px #ffffff66,inset 1px 1px 2px #fff;
+}
+.reference-shell[data-theme] .switch:disabled { cursor:not-allowed; }
+.reference-shell[data-theme] .switch:disabled::before { background:var(--input-neo-fill); border-color:var(--input-neo-border); }
+.reference-shell[data-theme] .switch.enabled:disabled::before { background:linear-gradient(120deg,#304d78,#62415d); }
+/* Save mapping uses the same steady primary palette in both themes. */
+.reference-shell[data-theme] .account-form .actions > .button.primary,
+.reference-shell[data-theme] .account-form .actions > .button.primary:hover {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important;
+ color:#fff!important; border:1px solid #ffffff45; border-radius:12px; font-weight:700;
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight),inset 0 1px 0 #ffffff30;
+ filter:none; transform:none;
+}
+.reference-shell[data-theme] .account-form .actions > .button.primary:disabled { opacity:.55; box-shadow:none; cursor:not-allowed; }
+.reference-shell[data-theme] .account-form .actions > .button.primary:not(:disabled):active { box-shadow:inset 3px 3px 6px #061d3355,inset -2px -2px 4px #ffffff25; }
+/* Readable account management typography. */
+.reference-shell[data-theme] .account-management-page :is(table,.field input,.field select,.button) { font-size:16px; line-height:1.5; }
+.reference-shell[data-theme] .account-management-page :is(th,.field label) { font-size:15px; }
+.reference-shell[data-theme] .account-management-page .panel-header h2 { font-size:20px; }
+.reference-shell[data-theme] .account-management-page td { padding:14px 16px; }
+.reference-shell[data-theme] .reservations-page > .ui-status-guide { margin:18px 0 0; }
+/* Keep activity status next to its arrow without crowding the ticket icon. */
+.reference-shell[data-theme] .ref-dashboard-focused:not(.student-compact-dashboard) .ref-recent-card .ref-recent-row {
+ grid-template-columns:38px minmax(0,1fr) auto 18px; grid-template-rows:auto; gap:12px;
+}
+.reference-shell[data-theme] .ref-dashboard-focused:not(.student-compact-dashboard) .ref-recent-card .ref-recent-row > .ref-recent-status {
+ grid-column:3; grid-row:1; justify-self:end; white-space:normal; max-width:130px; text-align:center;
+}
+.reference-shell[data-theme] .ref-dashboard-focused:not(.student-compact-dashboard) .ref-recent-card .ref-recent-row > svg { grid-column:4; grid-row:1; }
+@media(max-width:480px) {
+ .reference-shell[data-theme] .ref-dashboard-focused:not(.student-compact-dashboard) .ref-recent-card .ref-recent-row { grid-template-columns:34px minmax(0,1fr) auto 18px; gap:8px; }
+ .reference-shell[data-theme] .ref-dashboard-focused:not(.student-compact-dashboard) .ref-recent-card .ref-recent-row > .ref-recent-status { max-width:90px; font-size:12px; }
+}
+/* Let longer activity statuses use the available row width. */
+.reference-shell[data-theme] .ref-dashboard-focused:not(.student-compact-dashboard) .ref-recent-card .ref-recent-row > .ref-recent-status {
+ width:max-content; max-width:none; white-space:nowrap; overflow-wrap:normal; word-break:normal;
+}
+/* Larger, consistent Help Center text across account and public views. */
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center :is(p,.help-topic-text > span,.help-search > label,.help-results-count,.help-filter-chips button) { font-size:16px; line-height:1.6; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center :is(.help-topic-text strong,.help-guide-grid h3,.help-faq h3 > button) { font-size:18px; line-height:1.5; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center :is(.help-action,.help-primary-action,.help-secondary-action) { font-size:17px!important; line-height:1.5; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center :is(.help-section-heading h2,.help-more h2) { font-size:24px; line-height:1.35; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-search-box input[type=search] { font-size:17px; line-height:1.5; }
+:is(.reference-shell[data-theme],.ref-auth-page[data-theme],.public-help-page) .help-center .help-guide-grid .help-action { font-size:17px!important; }
+/* Recovery dialogs share the portal primary-action colors in both themes. */
+.reference-shell[data-theme].modal-portal-root .ref-auth-security-modal .ref-auth-submit,
+.reference-shell[data-theme].modal-portal-root .ref-auth-security-modal .ref-auth-submit:hover {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important; color:#fff!important;
+ border:1px solid #ffffff45; border-radius:12px; min-height:44px; padding:10px 18px; font-size:15px; font-weight:700;
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight),inset 0 1px 0 #ffffff30;
+}
+.reference-shell[data-theme].modal-portal-root .ref-auth-security-modal .ref-auth-submit:not(:disabled):active { box-shadow:inset 3px 3px 6px #061d3355,inset -2px -2px 4px #ffffff25; }
+.reference-shell[data-theme].modal-portal-root .ref-auth-security-modal .ref-auth-submit:disabled { opacity:.55; cursor:not-allowed; box-shadow:none; }
+.reference-shell[data-theme].modal-portal-root .ref-auth-security-modal .ref-auth-text-button,
+.reference-shell[data-theme].modal-portal-root .ref-auth-security-modal .ref-auth-text-button:hover { background:transparent!important; color:var(--input-neo-text)!important; box-shadow:none; }
+/* Recovery navigation stays a plain text action in every state. */
+.reference-shell[data-theme].modal-portal-root .modal.ref-auth-security-modal button.ref-auth-text-button,
+.reference-shell[data-theme].modal-portal-root .modal.ref-auth-security-modal button.ref-auth-text-button:is(:hover,:focus,:active) {
+ background:transparent!important; background-image:none!important; border:0!important; box-shadow:none!important; border-radius:0!important; color:var(--input-neo-text)!important;
+}
+.reference-shell[data-theme].modal-portal-root .modal.ref-auth-security-modal button.ref-auth-text-button::before,
+.reference-shell[data-theme].modal-portal-root .modal.ref-auth-security-modal button.ref-auth-text-button::after { content:none!important; }
+/* The recovery primary action keeps its gradient before hover as well. */
+.reference-shell[data-theme].modal-portal-root .modal.ref-auth-security-modal button.ref-auth-submit,
+.reference-shell[data-theme].modal-portal-root .modal.ref-auth-security-modal button.ref-auth-submit:is(:hover,:focus,:active,:disabled) {
+ background-color:#414c70!important;
+ background-image:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important;
+ color:#fff!important; filter:none; transform:none;
+}
+/* Public Help Center shares the login campus scene with gentle background blur. */
+.public-help-page { position:relative; isolation:isolate; min-height:100dvh; background:#d4e3e7; }
+.public-help-page::before {
+ content:''; position:fixed; inset:-12px; z-index:-1; pointer-events:none;
+ background:var(--brand-campus-background) center / cover no-repeat;
+ filter:blur(6px);
+}
+.public-help-page .public-help-header {
+ padding:16px 20px; border:1px solid #ffffff85; border-radius:18px;
+ background:#f1f5f8e6; box-shadow:0 6px 20px #061d3320;
+ backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+@media(max-width:650px) { .public-help-page .public-help-header { padding:14px; } }
+/* Public Help Center return action uses the steady system gradient. */
+.public-help-page .public-help-header > button.button.secondary,
+.public-help-page .public-help-header > button.button.secondary:is(:hover,:focus,:active) {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important;
+ color:#fff!important; border:1px solid #ffffff45; border-radius:12px;
+ padding:10px 18px; min-height:44px; font-size:15px; font-weight:700;
+ box-shadow:4px 4px 8px #bbcbd6,-3px -3px 7px #ffffff,inset 0 1px 0 #ffffff30;
+ filter:none; transform:none;
+}
+.public-help-page .public-help-header > button.button.secondary:active { box-shadow:inset 3px 3px 6px #061d3355,inset -2px -2px 4px #ffffff25; }
+/* Keep floating section headings readable without adding panels. */
+.public-help-page::before {
+ background-image:linear-gradient(#061d334d,#061d335c),var(--brand-campus-background);
+}
+.public-help-page .help-center > :is(.help-topics,.help-faq-section) > .help-section-heading :is(h2,.help-eyebrow,.help-section-caption) {
+ color:#fff!important; text-shadow:0 2px 5px #061d33,0 1px 2px #061d33;
+}
+.public-help-page .help-center > .help-faq-section > .help-section-heading .help-results-count {
+ background:transparent; color:var(--help-navy); border:0; padding:0; text-shadow:none;
+}
+.public-help-page .public-help-header > button.button.secondary { color:#fff!important; font-size:16px; font-weight:700; line-height:1.5; }
+/* Give neighboring Help sections enough separation to read as distinct groups. */
+.public-help-page .help-center > section + section { margin-top:28px; }
+@media(max-width:650px) { .public-help-page .help-center > section + section { margin-top:22px; } }
+.reference-shell[data-theme="light"] .public-help-page::before {
+ background-image:linear-gradient(#f6f9fa66,#f6f9fa82),var(--brand-campus-background);
+}
+.reference-shell[data-theme="light"] .public-help-page .help-center > :is(.help-topics,.help-faq-section) > .help-section-heading :is(h2,.help-eyebrow,.help-section-caption) {
+ color:var(--help-navy)!important; text-shadow:none;
+}
+.reference-shell[data-theme="light"] .public-help-page .help-center > .help-faq-section > .help-section-heading .help-results-count {
+ background:transparent; color:var(--help-navy); border:0; padding:0;
+}
+.reference-shell[data-theme="dark"] .public-help-page {
+ --input-neo-fill:#173247; --input-neo-shadow:#0a1e2d; --input-neo-highlight:#2a4b62; --input-neo-text:#f0f5f8; --input-neo-border:#68899c;
+}
+.reference-shell[data-theme="dark"] .public-help-page .public-help-header {
+ border-color:#40566d; background:rgba(17,30,46,.9); box-shadow:0 6px 20px #0005;
+}
+.reference-shell[data-theme="dark"] .public-help-page .public-help-brand { color:#e3edf7; }
+.reference-shell[data-theme="dark"] .public-help-page .public-help-brand-copy small { color:#c2d2df; }
+.reference-shell[data-theme="dark"] .public-help-page .public-help-header > button.button.secondary,
+.reference-shell[data-theme="dark"] .public-help-page .public-help-header > button.button.secondary:is(:hover,:focus,:active) {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important; color:#fff!important; border-color:#ffffff45; box-shadow:4px 4px 8px #07111d80,-3px -3px 7px #ffffff20,inset 0 1px 0 #ffffff30;
+}
+.public-help-page .help-center :is(.help-action,.help-primary-action),
+.public-help-page .help-center :is(.help-action,.help-primary-action):is(:hover,:focus-visible) {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important; color:#fff!important;
+ border:1px solid #ffffff45!important; box-shadow:3px 3px 7px #07111d66,-2px -2px 6px #ffffff20,inset 0 1px 0 #ffffff30!important;
+}
+.public-help-page .help-center :is(.help-action,.help-primary-action):active { box-shadow:inset 3px 3px 6px #061d3355,inset -2px -2px 4px #ffffff25!important; }
+.reference-shell[data-theme="light"] .public-help-page .public-help-header > button.button.secondary,
+.reference-shell[data-theme="light"] .public-help-page .public-help-header > button.button.secondary:is(:hover,:focus,:active) {
+ background-color:#414c70!important; background-image:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important; color:#fff!important;
+}
+.reference-shell[data-theme="light"] .public-help-page .help-center :is(.help-action,.help-primary-action),
+.reference-shell[data-theme="light"] .public-help-page .help-center :is(.help-action,.help-primary-action):is(:hover,:focus-visible,:active) {
+ background-color:#414c70!important; background-image:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important; color:#fff!important;
+}
+.reference-shell[data-theme="light"] .public-help-page .public-help-header > button.button.secondary:not(:disabled):not(.switch),
+.reference-shell[data-theme="light"] .public-help-page .public-help-header > button.button.secondary:not(:disabled):not(.switch):is(:hover,:focus,:active),
+.reference-shell[data-theme="light"] .public-help-page .help-center .help-quick-guide .help-guide-grid button.help-action:not(:disabled),
+.reference-shell[data-theme="light"] .public-help-page .help-center .help-quick-guide .help-guide-grid button.help-action:not(:disabled):is(:hover,:focus-visible,:active),
+.reference-shell[data-theme="light"] .public-help-page .help-center .help-more button.help-primary-action:not(:disabled),
+.reference-shell[data-theme="light"] .public-help-page .help-center .help-more button.help-primary-action:not(:disabled):is(:hover,:focus-visible,:active) {
+ background-color:#414c70!important; background-image:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important;
+ color:#fff!important; filter:none!important; transform:none!important;
+}
+.reference-shell[data-theme="dark"] .public-help-page .help-center > :is(.help-topics,.help-faq-section) > .help-section-heading :is(h2,.help-eyebrow,.help-section-caption) {
+ color:#e3edf7!important; text-shadow:none;
+}
+.reference-shell[data-theme="dark"] .public-help-page .help-center > .help-faq-section > .help-section-heading .help-results-count {
+ background:transparent; color:#e3edf7; border:0; padding:0;
+}
+.reference-shell[data-theme] .help-center .help-quick-guide .help-guide-grid button.help-action:not(:disabled),
+.reference-shell[data-theme] .help-center .help-quick-guide .help-guide-grid button.help-action:not(:disabled):is(:hover,:focus-visible,:active),
+.reference-shell[data-theme] .help-center .help-more .help-more-actions button.help-primary-action:not(:disabled),
+.reference-shell[data-theme] .help-center .help-more .help-more-actions button.help-primary-action:not(:disabled):is(:hover,:focus-visible,:active) {
+ background-color:#414c70!important; background-image:var(--button-action-gradient)!important;
+ color:#fff!important; border:1px solid #ffffff45!important;
+ box-shadow:4px 4px 8px var(--input-neo-shadow),-3px -3px 7px var(--input-neo-highlight),inset 0 1px 0 #ffffff30!important;
+ filter:none!important; transform:none!important;
+}
+.reference-shell[data-theme="light"] .preview-role { color:var(--palette-muted)!important; }
+.reference-shell[data-theme] .help-center .help-filter-chips button,
+.reference-shell[data-theme] .help-center .help-filter-chips button:hover,
+.reference-shell[data-theme] .help-center .help-filter-chips button:focus-visible {
+ box-shadow:4px 4px 8px var(--input-neo-shadow)!important;
+}
+.reference-shell[data-theme] .help-center .help-filter-chips button.is-active,
+.reference-shell[data-theme] .help-center .help-filter-chips button.is-active:hover,
+.reference-shell[data-theme] .help-center .help-filter-chips button.is-active:focus-visible {
+ box-shadow:inset 3px 3px 6px var(--input-neo-shadow)!important;
+}
+
+/* The ticket Done action uses the same gradient in both appearance modes. */
+.reference-shell[data-theme].modal-portal-root .modal.ticket-modal .modal-footer .button.primary,
+.reference-shell[data-theme].modal-portal-root .modal.ticket-modal .modal-footer .button.primary:is(:hover,:focus-visible,:active) {
+ background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important;
+ color:#fff!important; border:1px solid #8b8ca8!important;
+ box-shadow:0 4px 10px #10203c30,inset 0 1px 0 #ffffff25!important;
+ filter:none!important;
+}

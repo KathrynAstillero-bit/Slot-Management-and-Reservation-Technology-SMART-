@@ -1,0 +1,240 @@
+/* Shared type hierarchy and contrast across the signed-in portal. */
+.reference-shell {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.reference-shell .reference-heading strong {
+  font-size: 17px;
+  line-height: 1.4;
+}
+.reference-shell .reference-heading > span {
+  font-size: 14px;
+}
+.reference-shell .reference-topbar {
+  gap: 20px;
+}
+.reference-shell .reference-top-actions {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.reference-shell .reference-heading {
+  max-width: 680px;
+}
+.reference-shell .page-heading > div > .eyebrow {
+  display: none;
+}
+.reference-shell .page-heading h1 {
+  font-size: 30px;
+  line-height: 1.25;
+}
+.reference-shell .page-subtitle {
+  font-size: 16px;
+  line-height: 1.65;
+}
+.reference-shell .panel-header h2,
+.reference-shell .panel-header h3,
+.reference-shell .ref-section-header h2 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+.reference-shell .field > label {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.reference-shell .field input,
+.reference-shell .field select,
+.reference-shell .field textarea {
+  font-size: 16px;
+  min-height: 46px;
+}
+.reference-shell .button {
+  font-size: 15px;
+  min-height: 44px;
+}
+.reference-shell .chip {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.reference-shell .reference-main-nav .nav-item {
+  font-size: 15px;
+}
+.reference-shell .reference-brand .brand-copy {
+  font-size: 14px;
+}
+.reference-shell .brand-copy small {
+  font-size: 14px;
+  letter-spacing: 0.6px;
+}
+.reference-shell .sidebar-theme-options > button {
+  font-size: 14px;
+}
+.reference-shell .sidebar-appearance-label {
+  font-size: 14px;
+}
+.reference-shell .ref-dashboard-focused .ref-summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.reference-shell .ref-dashboard-focused .ref-summary-top {
+  justify-content: flex-start;
+  margin-bottom: 12px;
+  gap: 14px;
+}
+.reference-shell .ref-dashboard-focused .ref-summary-label {
+  font-size: 16px;
+}
+.reference-shell .ref-dashboard-focused .ref-summary-value {
+  font-size: 32px;
+  line-height: 1.2;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.reference-shell .ref-dashboard-focused .ref-summary-card {
+  padding: 22px;
+}
+.reference-shell .ref-dashboard-focused .ref-campus-hero {
+  min-height: 220px;
+}
+.reference-shell .ref-dashboard-focused .ref-hero-copy {
+  max-width: 620px;
+}
+.reference-shell .ref-dashboard-focused .ref-hero-copy h2 {
+  font-size: 28px;
+  margin: 0 0 12px;
+}
+.reference-shell .ref-dashboard-focused .ref-hero-copy p {
+  font-size: 16px;
+  max-width: 540px;
+  line-height: 1.65;
+}
+.reference-shell .ref-dashboard-focused .ref-next-card h2 {
+  font-size: 22px;
+  line-height: 1.4;
+}
+.reference-shell .ref-dashboard-focused .ref-next-card > p {
+  font-size: 16px;
+}
+.reference-shell .ref-dashboard-focused .ref-card-kicker {
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.reference-shell .ref-dashboard-focused .ref-dash-bottom {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.reference-shell .ref-dashboard-focused .ref-recent-empty {
+  min-height: 180px;
+  justify-content: center;
+}
+.reference-shell .ref-dashboard-focused .ref-recent-empty > p {
+  font-size: 16px;
+}
+.reference-shell .ref-dashboard-focused .ref-office-copy strong {
+  font-size: 17px;
+}
+.reference-shell .ref-dashboard-focused .ref-office-copy small {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.reference-shell .ref-text-button {
+  font-size: 15px;
+}
+.reference-shell .institute-footer {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.reference-shell .institute-footer strong {
+  font-size: 15px;
+}
+.reference-shell .institute-footer-bottom,
+.reference-shell .institute-footer button {
+  font-size: 14px;
+}
+
+/* Readable secondary text on light glass surfaces. */
+.reference-shell[data-theme="light"] {
+  --muted: #526675;
+}
+.reference-shell[data-theme="light"] .ref-dashboard {
+  --dash-muted: #526675;
+}
+.reference-shell[data-theme="light"] .reference-heading > span,
+.reference-shell[data-theme="light"] .page-subtitle,
+.reference-shell[data-theme="light"] .muted,
+.reference-shell[data-theme="light"] .field small,
+.reference-shell[data-theme="light"] .ref-summary-label,
+.reference-shell[data-theme="light"] .ref-card-kicker,
+.reference-shell[data-theme="light"] .ref-next-card > p,
+.reference-shell[data-theme="light"] .ref-office-copy small,
+.reference-shell[data-theme="light"] .ref-recent-empty,
+.reference-shell[data-theme="light"] .office-text small,
+.reference-shell[data-theme="light"] .service-card small,
+.reference-shell[data-theme="light"] .panel-header p,
+.reference-shell[data-theme="light"] .help-section-heading p,
+.reference-shell[data-theme="light"] .help-topic-text > span,
+.reference-shell[data-theme="light"] .help-guide-grid p,
+.reference-shell[data-theme="light"] .institute-footer p {
+  color: #4c6272;
+}
+.reference-shell[data-theme="light"] .demo-banner {
+  color: #476173;
+  background: #edf5fa;
+  border-color: #cbdde7;
+}
+.reference-shell[data-theme="light"] .ref-date-pill {
+  color: #38596e;
+}
+.reference-shell[data-theme="light"] .ref-hero-copy > .button {
+  background: #f5fbff;
+  color: #123d55;
+}
+.reference-shell[data-theme="dark"] .ref-hero-copy > .button {
+  background: #d7edff;
+  color: #132f48;
+  border-color: #d7edff;
+}
+@media (max-width: 1050px) {
+  .reference-shell .ref-dashboard-focused .ref-dash-primary,
+  .reference-shell .ref-dashboard-focused .ref-dash-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 767px) {
+  .reference-shell .reference-heading strong {
+    font-size: 14px;
+  }
+  .reference-shell .reference-heading > span {
+    font-size: 14px;
+  }
+  .reference-shell .reference-heading {
+    min-width: 0;
+  }
+  .reference-shell .reference-topbar {
+    gap: 8px;
+  }
+  .reference-shell .ref-dashboard-focused .ref-summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .reference-shell .ref-dashboard-focused .ref-summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px;
+  }
+  .reference-shell .ref-dashboard-focused .ref-summary-top {
+    margin: 0;
+  }
+  .reference-shell .ref-dashboard-focused .ref-summary-value {
+    font-size: 28px;
+  }
+  .reference-shell .ref-dashboard-focused .ref-hero-copy h2 {
+    font-size: 25px;
+  }
+  .reference-shell .ref-dashboard-focused .ref-next-card h2 {
+    font-size: 20px;
+  }
+  .reference-shell .reference-bottom-dock > button {
+    font-size: 13px;
+  }
+}

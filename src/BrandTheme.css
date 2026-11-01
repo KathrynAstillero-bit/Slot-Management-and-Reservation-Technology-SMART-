@@ -1,0 +1,13 @@
+/* Shared identity for authentication and the signed-in portal. */
+:root {
+  --brand-navy: #062d53;
+  --brand-navy-deep: #061d3c;
+  --brand-blue: #1378c2;
+  --brand-blue-deep: #0c63a8;
+  --brand-blue-hover: #126db1;
+  --brand-cyan: #a6e7ff;
+  --brand-coral: #ff666d;
+  --brand-action: linear-gradient(180deg,var(--brand-blue),var(--brand-blue-deep));
+  --brand-auth-background: url('/assets/portal-gradient.jpg');
+  --brand-campus-background: url('/assets/ccdi-campus-enhanced.png');
+}

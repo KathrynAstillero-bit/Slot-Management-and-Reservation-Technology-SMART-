@@ -1,0 +1,86 @@
+/* Balance component styles. */
+
+.matriculation {
+  max-width: 850px;
+  padding: 30px;
+}
+
+.matriculation > header {
+  text-align: center;
+}
+
+.matriculation > header img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin: 0 auto 13px;
+}
+
+.matriculation > header h2 {
+  font-size: 19px;
+  line-height: 1.5;
+  margin-bottom: 7px;
+  letter-spacing: 1px;
+}
+
+.matriculation > header h3 {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.matriculation > header p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.matriculation > p {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.matriculation > h3 {
+  margin-top: 28px;
+  font-size: 15px;
+}
+
+.matriculation .table td,
+.matriculation table td {
+  padding: 13px 16px;
+}
+
+.matriculation .summary-row {
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.matriculation .summary-row:last-of-type {
+  border-top: 1px solid #e1e8ee;
+  padding-top: 17px;
+  margin-top: 10px;
+  font-weight: 650;
+}
+
+@media (max-width: 767px) {
+  .matriculation {
+    padding: 24px;
+  }
+
+  .matriculation > header h2 {
+    font-size: 18px;
+  }
+
+  .matriculation > header h3 {
+    font-size: 15px;
+  }
+
+  .matriculation > header p {
+    font-size: 14px;
+  }
+
+  .matriculation .summary-row,
+  .matriculation .summary-row > strong {
+    font-size: 14px;
+  }
+}

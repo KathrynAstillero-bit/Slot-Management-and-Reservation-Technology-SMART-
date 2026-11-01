@@ -1,0 +1,421 @@
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 23px;
+}
+
+.availability-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.availability-card .panel-header {
+  padding-bottom: 20px;
+}
+
+.availability-card .panel-header h2,
+.availability-card .panel-header h3 {
+  font-size: 14px;
+}
+
+.availability-card > p {
+  padding: 0 24px;
+  font-size: 14px;
+  color: #90a1ad;
+}
+
+.availability-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 17px 24px;
+  border-top: 1px solid #eef1f4;
+}
+
+.availability-row strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 550;
+  color: #557385;
+}
+
+.availability-row small {
+  display: block;
+  color: #a0adb6;
+  font-size: 14px;
+  margin-top: 4px;
+  line-height: 1.6;
+}
+
+.availability-row.office-status {
+  background: #f8fbfc;
+}
+
+.switch {
+  width: 34px;
+  height: 19px;
+  border-radius: 20px;
+  background: #dce2e7;
+  border: 0;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.switch.enabled {
+  background: #2d7d79;
+}
+
+.switch-knob {
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px #00000013;
+  display: block;
+  transition: transform .18s ease;
+}
+
+.switch.enabled .switch-knob {
+  transform: translateX(15px);
+}
+
+.role-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #edf2f5;
+  padding: 4px;
+  border-radius: 7px;
+}
+
+.role-tab {
+  border: none;
+  background: none;
+  color: #8a9ea9;
+  font-size: 14px;
+  font-weight: 550;
+  padding: 8px 14px;
+  border-radius: 5px;
+}
+
+.role-tab.active {
+  background: #fff;
+  color: #345d74;
+  box-shadow: 0 1px 5px #1937490a;
+}
+
+.verify-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f4f7fa;
+  padding: 35px 20px;
+}
+
+.verify-page > .panel {
+  width: 100%;
+  max-width: 480px;
+  padding: 30px;
+  text-align: center;
+}
+
+.verify-page .brand {
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  margin-bottom: 28px;
+  min-height: 0;
+}
+
+.verify-page .brand-copy strong {
+  color: var(--navy);
+}
+
+.verify-page .brand-copy small {
+  color: #8d9eaa;
+}
+
+.verify-page .brand-mark {
+  color: #9e7c40;
+  border-color: #cdb783;
+}
+
+.verify-result {
+  padding: 25px;
+  border: 1px solid #e2eae8;
+  border-radius: 9px;
+  background: #fafdfb;
+  margin-top: 20px;
+}
+
+.verify-result h3 {
+  font-size: 15px;
+  margin: 15px 0 9px;
+}
+
+.verify-result p {
+  font-size: 14px;
+  color: #819a8a;
+}
+
+.verify-result.invalid {
+  border-color: #f0dcd7;
+  background: #fff8f6;
+}
+
+.verify-result.invalid h3 {
+  color: #aa6b5f;
+}
+
+.verify-result .summary-row {
+  margin-top: 12px;
+}
+
+.verify-input {
+  display: flex;
+  gap: 9px;
+  align-items: stretch;
+}
+
+.verify-input input {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-form {
+  padding: 0 24px 25px;
+}
+
+.account-form .form-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 17px;
+}
+
+.switch:disabled {
+  background: #e4e8eb;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .availability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .availability-row {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .verify-input {
+    flex-direction: column;
+  }
+
+  .verify-input .button {
+    min-height: 40px;
+  }
+
+  .verify-page > .panel {
+    padding: 25px 20px;
+  }
+
+  .verify-result {
+    padding: 20px 16px;
+  }
+}
+
+.availability-card .panel-header h2,
+.availability-card .panel-header h3 {
+  font-size: 17px;
+}
+
+.availability-card > p {
+  font-size: 14px;
+}
+
+.availability-row strong {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.availability-row small {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.availability-row p {
+  font-size: 14px;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+.switch {
+  position: relative;
+  width: 47px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.switch::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 44px;
+  height: 26px;
+  background: #dce2e7;
+  border-radius: 20px;
+  transition: background .18s ease;
+}
+
+.switch.enabled {
+  background: transparent;
+}
+
+.switch.enabled::before {
+  background: #2d7d79;
+}
+
+.switch-knob {
+  position: absolute;
+  left: 3px;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+.switch.enabled .switch-knob {
+  transform: translateX(18px);
+}
+
+.switch:disabled,
+.switch:disabled:hover {
+  background: transparent;
+}
+
+.switch:disabled::before {
+  background: #e4e8eb;
+}
+
+.verify-result h3 {
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.verify-result p {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.verify-page > .panel {
+  max-width: 560px;
+}
+
+.verify-page h1 {
+  font-size: 25px;
+  letter-spacing: -.7px;
+  line-height: 1.4;
+}
+
+.verify-page > .panel > p {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.verify-page > .login-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 24px;
+}
+
+.verify-page > .login-brand-badge strong {
+  font-size: 20px;
+  color: #214c66;
+}
+
+.verify-page > .login-brand-badge .login-logo {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+}
+
+.account-form > p.muted {
+  font-size: 14px !important;
+  line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+  .availability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .availability-row {
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .availability-row strong {
+    font-size: 15px;
+  }
+
+  .availability-row small,
+  .availability-row p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .availability-card .panel-header h2 {
+    font-size: 18px;
+  }
+
+  .switch {
+    min-width: 47px;
+    width: 47px;
+    height: 44px;
+  }
+
+  .account-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .verify-input {
+    flex-direction: column;
+  }
+
+  .verify-input .button {
+    min-height: 46px;
+  }
+
+  .verify-result {
+    padding: 23px 18px;
+  }
+
+  .verify-result h3 {
+    font-size: 20px;
+  }
+
+  .verify-result p {
+    font-size: 14px;
+  }
+}

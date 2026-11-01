@@ -1,0 +1,31 @@
+/* Shared school details across login, help, and account workspaces. */
+.institute-footer {
+  width: 100%;
+  margin: 28px 0 0;
+  padding: 24px 26px 18px;
+  color: #24495e;
+  border: 1px solid #ffffff80;
+  border-radius: 16px;
+  background: #ffffffb3;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.ref-auth-page > .institute-footer { max-width: 1040px; }
+.institute-footer-main { display: grid; grid-template-columns: 1.7fr 1fr 1fr; gap: 28px; }
+.institute-footer strong { display: block; font-size: 14px; color: #12374c; line-height: 1.5; }
+.institute-footer p { margin: 7px 0 0; max-width: 410px; }
+.institute-footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; margin-top: 20px; padding-top: 14px; border-top: 1px solid #12374c20; font-size: 14px; }
+.institute-footer nav { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
+.institute-footer button { border: 0; padding: 3px 0; color: #174e69; background: transparent; font-size: 14px; font-weight: 600; }
+.institute-footer button:hover { text-decoration: underline; }
+@media(max-width: 760px) {
+  .institute-footer { padding: 22px; }
+  .institute-footer-main { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .institute-footer-intro { grid-column: 1 / -1; }
+  .institute-footer-bottom { align-items: flex-start; flex-direction: column; }
+}
+@media(max-width: 370px) {
+  .institute-footer-main { grid-template-columns: 1fr; gap: 16px; }
+}

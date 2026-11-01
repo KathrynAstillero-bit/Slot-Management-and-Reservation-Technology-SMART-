@@ -1,0 +1,44 @@
+/* Adapt each reservation row to its card width, including narrow desktop columns. */
+.reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card { container-type:inline-size; min-width:0; }
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row {
+ display:grid; grid-template-columns:38px minmax(0,1fr) auto 18px; grid-template-rows:auto; gap:10px 12px; align-items:center; padding:14px; min-width:0;
+}
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > .ref-recent-symbol { grid-column:1; grid-row:1; align-self:start; width:38px; height:38px; }
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > span:nth-child(2) {
+ grid-column:2; grid-row:1; min-width:0; width:auto; overflow-wrap:break-word; word-break:normal; text-align:left;
+}
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row :is(strong,small) { white-space:normal; word-break:normal; overflow-wrap:break-word; }
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > .ref-recent-status { grid-column:3; grid-row:1; width:max-content; max-width:100%; justify-self:end; white-space:nowrap; }
+.reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > svg { grid-column:4; grid-row:1; margin:0; align-self:center; }
+@container(max-width:540px) {
+ .reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row { grid-template-columns:38px minmax(0,1fr) 18px; grid-template-rows:auto auto; gap:10px 12px; }
+ .reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > span:nth-child(2) { grid-column:2 / -1; grid-row:1; }
+ .reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > .ref-recent-status { grid-column:2; grid-row:2; justify-self:end; width:auto; white-space:normal; }
+ .reference-shell[data-theme] .ref-dashboard.ref-dashboard-focused .ref-recent-card .ref-recent-row > svg { grid-column:3; grid-row:2; }
+}
+/* Keep only the dock surface and underline; each navigation item is unboxed. */
+.reference-shell[data-theme] .reference-bottom-dock > button,
+.reference-shell[data-theme] .reference-bottom-dock > button:is(.active,:hover,:focus,:active) {
+ background:transparent!important; background-image:none!important; box-shadow:none!important; border:0!important; border-radius:0!important;
+}
+.reference-shell[data-theme] .reference-bottom-dock > button::before { background:transparent!important; box-shadow:none!important; }
+/* Keep the preview selector inside the mobile header, not over the greeting. */
+@media(max-width:767px) {
+ .reference-shell[data-theme] .reference-topbar { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px 10px; height:auto; min-height:0; }
+ .reference-shell[data-theme] .reference-top-brand { grid-column:1; grid-row:1; width:100%; }
+ .reference-shell[data-theme] .reference-top-actions { display:contents; }
+ .reference-shell[data-theme] .reference-top-actions > .reference-profile { grid-column:2; grid-row:1; justify-self:end; }
+ .reference-shell[data-theme] .reference-top-actions > .preview-role { position:static; grid-column:1 / -1; grid-row:2; justify-self:end; margin:0; width:auto; }
+ .reference-shell[data-theme] .preview-role > select { min-height:36px; max-width:130px; }
+}
+/* Override the shared gradient on dock items while retaining the dock itself. */
+.reference-shell[data-theme] nav.reference-bottom-dock[aria-label] > button:not(.switch):not(.reference-brand):not(.nav-item),
+.reference-shell[data-theme] nav.reference-bottom-dock[aria-label] > button:not(.switch):not(.reference-brand):not(.nav-item):is(:hover,:focus,:active) {
+ background:transparent!important; background-image:none!important; border:0!important; box-shadow:none!important;
+}
+@media(max-width:767px) {
+ .reference-shell[data-theme] .reference-top-actions > .preview-role > select { width:130px; max-width:130px; }
+}
+/* Hide the sidebar scroll indicator without disabling navigation scrolling. */
+.reference-shell[data-theme] :is(.reference-rail,.reference-main-nav,.side-bottom) { scrollbar-width:none; -ms-overflow-style:none; }
+.reference-shell[data-theme] :is(.reference-rail,.reference-main-nav,.side-bottom)::-webkit-scrollbar { display:none; width:0; height:0; }

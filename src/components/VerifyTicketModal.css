@@ -1,0 +1,106 @@
+.verify-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.verify-modal-dialog {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 512px;
+  border-radius: 28px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.85);
+  padding: 24px;
+  text-align: left;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .verify-modal-dialog {
+    padding: 28px;
+  }
+}
+
+.verify-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.verify-modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.verify-modal-icon-frame {
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(14, 165, 233, 0.15);
+  color: var(--neon-sky);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.verify-modal-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--neon-sky);
+  display: block;
+}
+
+.verify-modal-headline {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.verify-modal-close-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.verify-modal-close-icon:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.verify-search-input-field {
+  flex: 1;
+  padding: 10px 16px;
+  background: rgba(23, 23, 23, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  font-size: 12px;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.verify-search-input-field:focus {
+  border-color: var(--neon-sky);
+}

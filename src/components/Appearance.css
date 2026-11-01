@@ -1,0 +1,25 @@
+.reference-shell .sidebar-appearance { margin-bottom: 18px; }
+.reference-shell .sidebar-appearance-label { display: block; color: #a8c5d8; font-size: 14px; margin: 0 8px 9px; }
+.reference-shell .sidebar-theme-options { display: flex; gap: 5px; padding: 4px; border-radius: 12px; background: #ffffff0a; }
+.reference-shell .sidebar-theme-options > button { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; min-width: 0; flex: 1; border: 1px solid transparent; border-radius: 8px; padding: 8px; background: transparent; color: #a9c7d8; font-size: 14px; }
+.reference-shell .sidebar-theme-options > button:hover { background: #ffffff12; color: #f6fbff; }
+.reference-shell .sidebar-theme-options > button[aria-pressed="true"] { background: #d3edff22; border-color: #c8e6fa38; color: #f4fbff; }
+.reference-shell:not(.rail-expanded) .sidebar-theme-options { flex-direction: column; }
+.reference-shell:not(.rail-expanded) .sidebar-appearance-label,
+.reference-shell:not(.rail-expanded) .sidebar-theme-options > button > span { display: none; }
+.reference-shell .reference-main-nav { flex-shrink: 0; }
+/* Short desktop windows can scroll the rail without covering navigation items. */
+@media(min-width:768px) and (max-height:820px) {
+  .reference-shell .reference-rail { overflow-y: auto; scrollbar-width: thin; }
+  .reference-shell .reference-main-nav { gap: 4px; padding-top: 12px; padding-bottom: 12px; }
+  .reference-shell .reference-main-nav .nav-item { min-height: 42px; padding-top: 10px; padding-bottom: 10px; }
+  .reference-shell .sidebar-appearance { margin-bottom: 12px; }
+  .reference-shell .sidebar-theme-options > button { min-height: 34px; padding: 6px; }
+  .reference-shell .side-bottom { padding-top: 10px; padding-bottom: 10px; }
+}
+@media(max-width:767px) {
+  .reference-shell:not(.rail-expanded) .sidebar-theme-options { flex-direction: row; }
+  .reference-shell:not(.rail-expanded) .sidebar-appearance-label,
+  .reference-shell:not(.rail-expanded) .sidebar-theme-options > button > span { display: block; }
+  .reference-shell .sidebar-theme-options > button { min-height: 44px; }
+}

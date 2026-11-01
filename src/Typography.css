@@ -1,0 +1,18 @@
+/* Shared type hierarchy for all account pages, dialogs, and public help. */
+:root {
+ --type-heading:clamp(28px,3vw,38px);
+ --type-section:21px;
+ --type-subheading:17px;
+ --type-body:15px;
+ --type-control:15px;
+ --type-caption:13px;
+}
+:is(.reference-shell[data-theme] .reference-page,.reference-shell[data-theme].modal-portal-root .modal,.public-help-page .help-center) { font-size:var(--type-body); line-height:1.6; }
+:is(.reference-shell[data-theme] .reference-page,.public-help-page .help-center) h1 { font-size:var(--type-heading)!important; line-height:1.2; }
+:is(.reference-shell[data-theme] .reference-page,.reference-shell[data-theme].modal-portal-root .modal,.public-help-page .help-center) h2 { font-size:var(--type-section)!important; line-height:1.35; }
+:is(.reference-shell[data-theme] .reference-page,.reference-shell[data-theme].modal-portal-root .modal,.public-help-page .help-center) h3 { font-size:var(--type-subheading)!important; line-height:1.4; }
+:is(.reference-shell[data-theme] .reference-page,.reference-shell[data-theme].modal-portal-root .modal,.public-help-page .help-center) :is(p,td,th,label,dd,dt,.notice,.summary-row,.ui-status-guide) { font-size:var(--type-body)!important; line-height:1.6; }
+:is(.reference-shell[data-theme] .reference-page,.reference-shell[data-theme].modal-portal-root .modal,.public-help-page .help-center) :is(.button,.help-action,.help-primary-action,.help-secondary-action,.help-filter-chips button,input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea) { font-size:var(--type-control)!important; line-height:1.5; }
+:is(.reference-shell[data-theme] .reference-page,.reference-shell[data-theme].modal-portal-root .modal,.public-help-page .help-center) :is(small,.eyebrow,.help-eyebrow,.chip,.ref-recent-status) { font-size:var(--type-caption)!important; line-height:1.5; }
+:is(.reference-shell[data-theme] .reference-page,.public-help-page .help-center) :is(.help-topic-text strong,.help-guide-grid h3,.help-faq h3 > button) { font-size:var(--type-subheading)!important; line-height:1.4; }
+.reference-shell[data-theme] .account-management-page td strong { font-size:var(--type-body); }

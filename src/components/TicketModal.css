@@ -1,0 +1,179 @@
+/* ==========================================================================
+   QR TICKET PASS MODAL STYLES (PURE CSS)
+   ========================================================================== */
+
+.ticket-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.80);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ticket-pass-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 448px;
+  border-radius: 28px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.9);
+  padding: 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .ticket-pass-container {
+    padding: 28px;
+  }
+}
+
+.ticket-glow-halo-blue {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.2);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.ticket-glow-halo-red {
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(244, 63, 94, 0.2);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.ticket-close-icon-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ticket-close-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.ticket-brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ticket-brand-logo-frame {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--gradient-blue-red);
+  padding: 1px;
+}
+
+.ticket-brand-logo-inner {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.ticket-brand-name {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #e2e8f0;
+}
+
+.ticket-priority-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--status-emerald);
+  margin-bottom: 4px;
+}
+
+.ticket-queue-number-headline {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  padding: 4px 0;
+  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ticket-qr-box {
+  margin: 16px auto;
+  padding: 14px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.15);
+  display: inline-block;
+  border: 2px solid #cbd5e1;
+}
+
+.ticket-qr-img {
+  width: 176px;
+  height: 176px;
+  margin: 0 auto;
+  object-fit: contain;
+  display: block;
+}
+
+.ticket-meta-grid-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  text-align: left;
+  background: rgba(23, 23, 23, 0.85);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 12px;
+}
+
+.ticket-actions-btn-group {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

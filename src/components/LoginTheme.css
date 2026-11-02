@@ -386,3 +386,17 @@
 @media(max-width:760px) {
   .ref-auth-page .ref-auth-signup .ref-auth-form-content > h2 { font-size: 44px; letter-spacing: -1px; }
 }
+
+/* Registration confirmation follows the selected appearance theme. */
+.ref-auth-page[data-theme=light] .ref-auth-registration-complete {color:#34556a;}
+.ref-auth-page[data-theme=light] .ref-auth-registration-complete > svg {color:#246849;}
+.ref-auth-page[data-theme=light] .ref-auth-registration-complete > h3 {color:#061d33;}
+.ref-auth-page[data-theme=light] .ref-auth-registration-complete > :is(p,small) {color:#34556a;}
+.ref-auth-page[data-theme=light] .ref-auth-registration-complete .ref-auth-text-button {color:#093552;font-weight:600;}
+.ref-auth-page[data-theme=light] .ref-auth-registration-complete .ref-auth-text-button:hover {color:#8f101b;text-decoration:underline;text-underline-offset:4px;}
+.ref-auth-page[data-theme] .ref-auth-registration-complete .ref-auth-text-button:focus-visible {outline:2px solid #68899c;outline-offset:4px;border-radius:4px;}
+.ref-auth-page[data-theme=dark] .ref-auth-registration-complete {color:#bde3eb;}
+.ref-auth-page[data-theme=dark] .ref-auth-registration-complete > svg {color:#a1e0b9;}
+.ref-auth-page[data-theme=dark] .ref-auth-registration-complete > h3 {color:#f4fafc;}
+.ref-auth-page[data-theme=dark] .ref-auth-registration-complete > :is(p,small) {color:#d0e0e8;}
+.ref-auth-page[data-theme=dark] .ref-auth-registration-complete .ref-auth-text-button {color:#bde3eb;}

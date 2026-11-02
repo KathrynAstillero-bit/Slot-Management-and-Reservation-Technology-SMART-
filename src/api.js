@@ -1,3 +1,6 @@
+import {removeInvalidDemoReservation} from './reservationRecordCleanup.js';
+import {bookingConflict} from './bookingRules.js';
+import {appointmentIsCurrent} from './appointmentStatus.js';
 import { queueOrder } from "./queuePosition.js";
 import {
   DEFAULT_CAPACITY,
@@ -99,6 +102,8 @@ function read() {
     ?.find((o) => o.id === "accounting")
     ?.services.find((s) => s.id === "discount");
   if (inquiry) inquiry.name = "Discount inquiry";
+  if(removeInvalidDemoReservation(state))save(state);
+  
   return state;
 }
 function save(state) {
@@ -427,6 +432,9 @@ export async function api(path, options = {}) {
   if (url.pathname === "/bookings" && options.method === "POST") {
     if (u.role !== "student")
       throw new Error("Use the Student account to reserve a slot.");
+    body.studentNumber=u.studentId;
+    const conflict=bookingConflict(state.bookings,{...body,studentId:u.id});
+    if(conflict)throw new Error(conflict);
     const office = state.offices.find((o) => o.id === body.officeId);
     const serviceIds = selectedServiceIds(office, body);
     const unavailable =
@@ -476,9 +484,9 @@ export async function api(path, options = {}) {
       throw new Error("This ticket belongs to another office.");
     if (booking.status !== "booked")
       throw new Error(`Ticket is already ${booking.status}.`);
-    if (booking.date !== today())
+    if (!appointmentIsCurrent(booking))
       throw new Error(
-        "Counter admission is available only on the appointment date (Manila time).",
+        "Being served is available only during the scheduled appointment date and hour (Manila time).",
       );
     booking.status = "checked-in";
     booking.checkedInAt = new Date().toISOString();

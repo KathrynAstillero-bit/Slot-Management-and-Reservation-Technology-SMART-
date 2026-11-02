@@ -31,3 +31,5 @@ export function reservationLabel(booking, now = Date.now()) {
     }[reservationState(booking, now)] || booking.status
   );
 }
+
+export function appointmentIsCurrent(booking,now=Date.now()){const start=Date.parse(booking.date+'T'+booking.time+':00+08:00');return Number.isFinite(start)&&now>=start&&now<start+3600000;}

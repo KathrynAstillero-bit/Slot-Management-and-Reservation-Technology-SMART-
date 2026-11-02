@@ -1,3 +1,4 @@
+import {previousWorkspacePage,rememberWorkspacePage} from './verificationNavigation.js';
 import React, { useState, useEffect, useCallback } from "react";
 import {
   Wallet,
@@ -74,10 +75,11 @@ export default function App() {
   const [session, setSession] = useState(null),
     [role, setRole] = useState("student"),
     [data, setData] = useState(null),
-    [page, setPage] = useState("dashboard"),
+    [page, setPage] = useState(previousWorkspacePage),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
     [toast, setToast] = useState("");
+  useEffect(()=>{rememberWorkspacePage(page);},[page]);
   const [syncError, setSyncError] = useState("");
   const [profilePhoto, setProfilePhoto] = useState(() => {
     try {

@@ -1,3 +1,5 @@
+import './VerificationPage.css';
+import {returnToPreviousScreen} from '../verificationNavigation.js';
 import React, { useState, useEffect } from "react";
 import { Sun, Moon, ArrowLeft } from "lucide-react";
 import { Verify } from "./Staff.jsx";
@@ -51,10 +53,10 @@ export default function VerificationPage({
             notify={notify}
             initialToken={initialToken}
           />
-          <a className="button secondary verification-back" href="/">
+          <button type="button" className="button secondary verification-back" onClick={returnToPreviousScreen}>
             <ArrowLeft size={16} />
-            Back To Portal
-          </a>
+            Back to previous screen
+          </button>
         </main>
         {toast && (
           <div className="toast" role="status">

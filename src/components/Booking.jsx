@@ -1,3 +1,4 @@
+import {BOOKING_POLICY,bookingConflict} from '../bookingRules.js';
 import PriorityNotice from "./PriorityNotice.jsx";
 import { slotCapacity } from "../slotCapacity.js";
 import "./Booking.css";
@@ -52,7 +53,7 @@ export default function Booking({
       (x) => x.officeId === officeId && x.date === d && x.time === t,
     )?.count || 0;
   const timeOff = (d, t) =>
-    dateOff(d) ||
+    !!bookingConflict(data.bookings,{officeId,date:d,time:t,studentNumber:profile.number}) || dateOff(d) ||
     data.blockedTimes.some(
       (x) => x.officeId === officeId && x.date === d && x.time === t,
     ) ||
@@ -158,7 +159,7 @@ export default function Booking({
           </p>
         </div>
       </div>
-      <PriorityNotice />
+      <PriorityNotice /><p className="notice info">{BOOKING_POLICY}</p>
       <div className="stepper">
         {[
           "Choose office",

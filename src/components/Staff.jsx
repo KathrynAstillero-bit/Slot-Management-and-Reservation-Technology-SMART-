@@ -1,3 +1,6 @@
+import {compareReservations,reservationSortOptions} from '../reservationSort.js';
+import './VerificationPage.css';
+import {appointmentIsCurrent} from '../appointmentStatus.js';
 import {
   appointmentPassed,
   reservationLabel,
@@ -341,6 +344,7 @@ export function Availability({ data, role, refresh, notify }) {
 
 export function Reservations({ data, role, refresh, notify }) {
   const student = role === "student";
+ const [sortOrder,setSortOrder]=useState('appointment-oldest');
   const resultsRef = useRef(null),
     filterChanged = useRef(false);
   function updateFilter(field, value) {
@@ -367,7 +371,7 @@ export function Reservations({ data, role, refresh, notify }) {
       block: "nearest",
       behavior: "instant",
     });
-  }, [date, service, office, status]);
+  }, [date, service, office, status, sortOrder]);
   const [ticket, setTicket] = useState(null),
     [action, setAction] = useState(null),
     [busy, setBusy] = useState(false),
@@ -387,12 +391,7 @@ export function Reservations({ data, role, refresh, notify }) {
         (!office || b.officeId === office) &&
         (!status || reservationState(b) === status),
     )
-    .sort(
-      (a, b) =>
-        a.date.localeCompare(b.date) ||
-        a.time.localeCompare(b.time) ||
-        a.queueNumber.localeCompare(b.queueNumber),
-    );
+    .sort((a,b)=>compareReservations(sortOrder,a,b));
   async function confirmAction() {
     if (!action || busy) return;
     setBusy(true);
@@ -497,6 +496,7 @@ export function Reservations({ data, role, refresh, notify }) {
               ))}
             </select>
           </div>
+          <div className="field"><label htmlFor="reservation-sort">Sort by</label><select id="reservation-sort" value={sortOrder} onChange={e=>{filterChanged.current=true;setSortOrder(e.target.value);}}>{reservationSortOptions.map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></div>
         </div>
         <button
           className="button secondary small"
@@ -618,10 +618,10 @@ export function Reservations({ data, role, refresh, notify }) {
                         {!student && b.status === "booked" && (
                           <button
                             className="button secondary small"
-                            disabled={b.date !== manilaDate()}
+                            disabled={!appointmentIsCurrent(b)}
                             title={
-                              b.date !== manilaDate()
-                                ? "Counter admission is available only on the appointment date (Manila time)."
+                              !appointmentIsCurrent(b)
+                                ? "Being served is available only during the scheduled date and hour (Manila time)."
                                 : "Admit this student at the counter"
                             }
                             onClick={() => {
@@ -721,7 +721,7 @@ export function Reservations({ data, role, refresh, notify }) {
                 disabled={
                   busy ||
                   (action.status === "checked-in" &&
-                    action.booking.date !== manilaDate())
+                    !appointmentIsCurrent(action.booking))
                 }
                 onClick={confirmAction}
               >
@@ -834,11 +834,11 @@ export function Verify({ role, refresh, notify, initialToken = "" }) {
         description="Paste the token or link encoded in a reservation’s QR code."
       />
 
-      <section className="panel" style={{ padding: 24 }}>
+      <section className="panel verify-lookup-panel" style={{ padding: 24 }}>
         <h2 className="section-title">
           <QrCode size={18} /> Ticket Lookup
         </h2>
-        <form
+        <form className="verify-lookup-form"
           onSubmit={(e) => {
             e.preventDefault();
             void inspect(input);
@@ -858,7 +858,7 @@ export function Verify({ role, refresh, notify, initialToken = "" }) {
               maxLength={2048}
               disabled={busy}
             />
-            <button className="button primary" disabled={busy || !input.trim()}>
+            <button className="button primary verify-submit" disabled={busy || !input.trim()}>
               <Search size={16} />
               {busy ? "Checking…" : "Check Ticket"}
             </button>
@@ -925,7 +925,7 @@ export function Verify({ role, refresh, notify, initialToken = "" }) {
                       busy ||
                       !result.valid ||
                       !rightOffice ||
-                      booking.date !== manilaDate()
+                      !appointmentIsCurrent(booking)
                     }
                     onClick={checkin}
                   >
@@ -933,7 +933,7 @@ export function Verify({ role, refresh, notify, initialToken = "" }) {
                     Admit at counter
                   </button>
                 )}
-                {staff && booking.date !== manilaDate() && (
+                {staff && !appointmentIsCurrent(booking) && (
                   <p className="notice info" style={{ marginTop: 12 }}>
                     Counter admission is available only on {dateLabel(booking.date)}, the
                     appointment date (Manila time).

@@ -156,7 +156,7 @@ export default function Ticket({ booking, data, onClose }) {
         </div>
         <details className="queue-ticket-link">
           <summary>Verification link</summary>
-          <a href={verificationUrl} target="_blank" rel="noreferrer">
+          <a href={verificationUrl}>
             {verificationUrl}
           </a>
         </details>

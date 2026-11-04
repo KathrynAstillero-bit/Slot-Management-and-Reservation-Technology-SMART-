@@ -8,6 +8,7 @@
 .reference-shell:not(.rail-expanded) .sidebar-appearance-label,
 .reference-shell:not(.rail-expanded) .sidebar-theme-options > button > span { display: none; }
 .reference-shell .reference-main-nav { flex-shrink: 0; }
+
 /* Short desktop windows can scroll the rail without covering navigation items. */
 @media(min-width:768px) and (max-height:820px) {
   .reference-shell .reference-rail { overflow-y: auto; scrollbar-width: thin; }

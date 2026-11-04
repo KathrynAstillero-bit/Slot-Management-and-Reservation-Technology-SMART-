@@ -182,9 +182,17 @@
 @media(max-width:767px) {
  .reference-shell[data-theme] .reference-rail { transition: transform .26s cubic-bezier(.22,.78,.3,1); }
  .reference-shell[data-theme] .reference-bottom-dock::after {
-  content: ''; pointer-events: none; position: absolute; top: 7px; bottom: 6px;
-  width: calc((100% - 16px) / var(--dock-count,4)); left: calc(8px + (100% - 16px) / var(--dock-count,4) * var(--dock-index,0));
-  border-radius: 25px; background: #68899c20; opacity: var(--dock-visible,1);
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  bottom: 6px;
+  left: calc(8px + (100% - 16px) / var(--dock-count,4) * (var(--dock-index,0) + .5));
+  width: 26px;
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background: var(--palette-active);
+  opacity: var(--dock-visible,1);
   transition: left .26s cubic-bezier(.22,.78,.3,1),opacity .2s;
  }
  .reference-shell[data-theme] .reference-bottom-dock > button { position: relative; z-index: 1; }

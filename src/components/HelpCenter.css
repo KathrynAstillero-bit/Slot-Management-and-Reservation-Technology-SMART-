@@ -1298,3 +1298,56 @@
     animation: none !important;
   }
 }
+
+.help-report-shortcut {
+  display: flex;
+  justify-content: flex-end;
+  margin-block: 16px;
+}
+
+.help-report-shortcut a {
+  text-decoration: none;
+}
+
+.help-report {
+  scroll-margin-top: 100px;
+}
+
+.help-report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 20px;
+}
+
+.help-report h3 {
+  margin-bottom: 8px;
+}
+
+.help-report-grid :is(ol, ul) {
+  margin: 0;
+  padding-inline-start: 1.4em;
+  line-height: 1.6;
+}
+
+.help-report-contact {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--help-line);
+}
+
+.help-report-contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.help-report-contact a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+

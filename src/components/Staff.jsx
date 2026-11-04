@@ -14,6 +14,8 @@ import "./Staff.css";
 import React, { useEffect, useState, useRef } from "react";
 import {
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   Check,
   CheckCircle2,
   ClipboardList,
@@ -357,13 +359,25 @@ export function Reservations({ data, role, refresh, notify }) {
     }
     if (field === "status") {
       setStatus(value);
-      setDate("");
+      if (student) setDate("");
     }
   }
-  const [date, setDate] = useState(""),
+  const [dateMode, setDateMode] = useState("today");
+  const [calendarMonth, setCalendarMonth] = useState(() => data.today.slice(0, 7));
+  const [calendarYear, calendarMonthNumber] = calendarMonth.split("-").map(Number);
+  const firstWeekday = new Date(Date.UTC(calendarYear, calendarMonthNumber - 1, 1)).getUTCDay();
+  const daysInMonth = new Date(Date.UTC(calendarYear, calendarMonthNumber, 0)).getUTCDate();
+
+  function changeCalendarMonth(offset) {
+    const month = new Date(Date.UTC(calendarYear, calendarMonthNumber - 1 + offset, 1));
+    setCalendarMonth(month.toISOString().slice(0, 7));
+  }
+
+  const [selectedDate, setDate] = useState(""),
     [service, setService] = useState(""),
     [office, setOffice] = useState(""),
     [status, setStatus] = useState("");
+  const date = student || dateMode === "custom" ? selectedDate : dateMode === "today" ? data.today : "";
   useEffect(() => {
     if (!filterChanged.current) return;
     filterChanged.current = false;
@@ -433,15 +447,63 @@ export function Reservations({ data, role, refresh, notify }) {
       {student && <PriorityNotice />}
       <div className="toolbar">
         <div>
-          <div className="field">
-            <label htmlFor="reservation-date">Appointment date</label>
-            <input
-              id="reservation-date"
-              type="date"
-              value={date}
-              onChange={(e) => updateFilter("date", e.target.value)}
-            />
-          </div>
+          {!student && (
+            <div className="field">
+              <label htmlFor="reservation-date-mode">Date</label>
+              <select id="reservation-date-mode" value={dateMode} onChange={(event) => setDateMode(event.target.value)}>
+                <option value="today">Today</option>
+                <option value="all">All dates</option>
+                <option value="custom">Choose a date…</option>
+              </select>
+              {dateMode === "custom" && (
+                <div className="calendar queue-date-calendar" role="group" aria-label="Filter by appointment date">
+                  <div className="calendar-head">
+                    <strong aria-live="polite">
+                      {new Intl.DateTimeFormat("en-PH", {
+                        month: "long", year: "numeric", timeZone: "UTC",
+                      }).format(new Date(Date.UTC(calendarYear, calendarMonthNumber - 1, 1)))}
+                    </strong>
+                    <div>
+                      <button type="button" className="button ghost small" aria-label="Previous month" onClick={() => changeCalendarMonth(-1)}><ChevronLeft size={16} /></button>
+                      <button type="button" className="button ghost small" aria-label="Next month" onClick={() => changeCalendarMonth(1)}><ChevronRight size={16} /></button>
+                    </div>
+                  </div>
+                  <div className="calendar-week" aria-hidden="true">
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => <span key={day}>{day}</span>)}
+                  </div>
+                  <div className="calendar-days">
+                    {Array.from({ length: firstWeekday }, (_, index) => <span key={index} />)}
+                    {Array.from({ length: daysInMonth }, (_, index) => {
+                      const day = `${calendarMonth}-${String(index + 1).padStart(2, "0")}`;
+                      return (
+                        <button
+                          key={day}
+                          type="button"
+                          className={`date-button ${day === selectedDate ? "selected" : ""} ${day === data.today ? "today" : ""}`}
+                          aria-label={dateLabel(day, true)}
+                          aria-pressed={day === selectedDate}
+                          onClick={() => setDate(day)}
+                        >
+                          {index + 1}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {student && (
+            <div className="field">
+              <label htmlFor="reservation-date">Appointment date</label>
+              <input
+                id="reservation-date"
+                type="date"
+                value={selectedDate}
+                onChange={(event) => updateFilter("date", event.target.value)}
+              />
+            </div>
+          )}
           {role === "admin" && (
             <div className="field">
               <label htmlFor="reservation-office">Office</label>
@@ -502,6 +564,7 @@ export function Reservations({ data, role, refresh, notify }) {
           className="button secondary small"
           onClick={() => {
             setDate("");
+            setDateMode("all");
             setService("");
             setOffice("");
             setStatus("");
@@ -510,27 +573,6 @@ export function Reservations({ data, role, refresh, notify }) {
           Clear filters
         </button>
       </div>
-      {!student && (
-        <div className="queue-date-shortcuts">
-          {date && <span>{`Showing ${dateLabel(date)} appointments`}</span>}
-          <button
-            type="button"
-            className="button secondary small"
-            aria-pressed={date === data.today}
-            onClick={() => updateFilter("date", data.today)}
-          >
-            Today only
-          </button>
-          <button
-            type="button"
-            className="button secondary small"
-            aria-pressed={!date}
-            onClick={() => updateFilter("date", "")}
-          >
-            All dates
-          </button>
-        </div>
-      )}
       {!student && (
         <p className="notice info">
           Admit students when they reach the counter, then mark their visits complete. Walk-ins
@@ -697,6 +739,7 @@ export function Reservations({ data, role, refresh, notify }) {
       )}
       {action && (
         <Modal
+          className="reservation-action-modal"
           title={
             action.status === "cancelled"
               ? "Cancel this reservation?"

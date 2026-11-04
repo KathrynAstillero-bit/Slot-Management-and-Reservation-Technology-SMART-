@@ -33,18 +33,19 @@
 .reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-section-header h2 { min-width:0; font-size:17px; line-height:1.4; }
 .reference-shell[data-theme] .ref-dashboard-focused .ref-recent-card .ref-text-button { flex-shrink:0; white-space:nowrap; }
 }
-/* Flat mobile navigation icons inside the existing dock. */
+/* Mobile navigation with the sliding active icon. */
 @media(max-width:767px) {
-.reference-shell[data-theme] .reference-bottom-dock > .dock-active-bubble,
 .reference-shell[data-theme] .reference-bottom-dock::before,
 .reference-shell[data-theme] .reference-bottom-dock::after { display:none; }
+.reference-shell[data-theme] .reference-bottom-dock > .dock-active-bubble > svg { animation:sidebar-icon-pop .32s ease-out; }
 .reference-shell[data-theme] .reference-bottom-dock > button,
 .reference-shell[data-theme] .reference-bottom-dock > button:hover,
 .reference-shell[data-theme] .reference-bottom-dock > button.active { background:transparent; box-shadow:none; border:0; border-radius:0; transform:none; position:relative; }
-.reference-shell[data-theme] .reference-bottom-dock > button > svg,
-.reference-shell[data-theme] .reference-bottom-dock > button.active > svg { opacity:1; background:transparent; border:0; border-radius:0; box-shadow:none; padding:0; margin:0; width:20px; height:20px; transform:none; }
+.reference-shell[data-theme] .reference-bottom-dock > button > svg { background:transparent; border:0; border-radius:0; box-shadow:none; padding:0; margin:0; width:20px; height:20px; transform:none; }
 .reference-shell[data-theme] .reference-bottom-dock > button.active { color:var(--palette-active); }
-.reference-shell[data-theme] .reference-bottom-dock > button.active::after { content:''; position:absolute; bottom:0; left:35%; right:35%; height:3px; border-radius:3px; background:currentColor; }
+}
+@media(max-width:767px) and (prefers-reduced-motion:reduce) {
+.reference-shell[data-theme] .reference-bottom-dock > .dock-active-bubble > svg { animation:none; }
 }
 /* Mobile account access uses natural document flow instead of desktop slide sizing. */
 @media(max-width:760px) {

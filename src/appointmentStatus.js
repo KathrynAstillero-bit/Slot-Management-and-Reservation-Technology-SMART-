@@ -5,7 +5,7 @@ export const manilaDate = (now = Date.now()) =>
     month: "2-digit",
     day: "2-digit",
   }).format(new Date(now));
-// Status labels are derived for display; saved reservation history is preserved.
+ 
 export function appointmentPassed(booking, now = Date.now()) {
   return (
     booking.status === "booked" &&

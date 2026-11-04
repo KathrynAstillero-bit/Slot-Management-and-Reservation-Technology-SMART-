@@ -8,3 +8,15 @@
 .reference-shell[data-theme].modal-portal-root .modal:not(.ticket-modal) .button.secondary:active,.reference-shell[data-theme].modal-portal-root .modal:not(.ticket-modal) .modal-header > .button:active { box-shadow:inset 3px 3px 6px var(--neo-shadow),inset -3px -3px 6px var(--neo-light); }
 .reference-shell[data-theme].modal-portal-root .modal:not(.ticket-modal) :is(button,a,summary,input,select):focus-visible { outline:3px solid var(--neo-accent); outline-offset:4px; }
 .reference-shell[data-theme] .ref-dashboard-focused .ref-next-card header .live-queue-subheading { font-size:19px; line-height:1.4; font-weight:650; text-transform:none; letter-spacing:0; color:var(--dashboard-blue); margin:0; }
+
+/* Office reservation action dialogs follow the active appearance. */
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal {color:var(--neo-ink);background:var(--neo-surface);}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .modal-body {background:var(--neo-surface);color:var(--neo-ink);}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .modal-body > .muted {color:var(--neo-muted);font-size:16px;line-height:1.7;}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .modal-body strong {color:var(--neo-ink);}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .notice.info {color:var(--neo-ink);background:color-mix(in srgb,var(--neo-accent) 9%,var(--neo-surface));border:1px solid color-mix(in srgb,var(--neo-accent) 28%,transparent);border-radius:12px;padding:16px;font-size:16px;line-height:1.6;}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .modal-footer .button.primary,
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .modal-footer .button.primary:hover {background:linear-gradient(110deg,#304d78,#414c70 38%,#62415d 68%,#7b3c50)!important;color:#fff!important;border:1px solid #ffffff40;border-radius:12px;min-height:46px;padding:12px 20px;font-size:16px;font-weight:650;box-shadow:0 4px 10px #061d3330,inset 0 1px 0 #ffffff25;}
+.reference-shell[data-theme=dark].modal-portal-root .modal.reservation-action-modal .modal-footer .button.primary {background:linear-gradient(110deg,#344f7b,#454d74 38%,#65445f 68%,#803e54)!important;}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .modal-footer .button.primary:disabled {opacity:.55;cursor:not-allowed;}
+.reference-shell[data-theme].modal-portal-root .modal.reservation-action-modal .notice.error {color:var(--neo-red);background:color-mix(in srgb,var(--neo-red) 8%,var(--neo-surface));}

@@ -399,7 +399,7 @@ export default function Shell({
         }}
       >
         <span className="dock-active-bubble" aria-hidden="true">
-          <ActiveQuickIcon size={22} />
+          <ActiveQuickIcon key={page} size={22} />
         </span>
         {quickNav.map(([key, label, Icon]) => (
           <button

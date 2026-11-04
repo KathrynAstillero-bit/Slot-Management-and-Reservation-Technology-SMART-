@@ -8,6 +8,7 @@ import {
   CalendarDays,
   Check,
   ChevronDown,
+  CircleAlert,
   CircleHelp,
   Clock3,
   Info,
@@ -361,6 +362,10 @@ export default function HelpCenter({ role = "student", setPage, onLogin }) {
         </form>
       </section>
 
+  <div className="help-report-shortcut">
+   <a className="help-primary-action" href={`#${instance}-report`}><CircleAlert size={18} aria-hidden="true"/>Report an issue</a>
+  </div>
+
       {!query.trim() && (
         <section
           className="help-topics"
@@ -545,6 +550,36 @@ export default function HelpCenter({ role = "student", setPage, onLogin }) {
           )}
         </div>
       </section>
+
+  <section id={`${instance}-report`} className="help-quick-guide help-report" aria-labelledby={`${instance}-report-title`} tabIndex={-1}>
+   <div className="help-section-heading">
+    <div><span className="help-eyebrow">TECHNICAL SUPPORT</span><h2 id={`${instance}-report-title`}>Report an issue</h2><p>If a page or feature in SMART isn’t working, try these steps first.</p></div>
+    <span className="help-small-symbol" aria-hidden="true"><CircleAlert size={23}/></span>
+   </div>
+   <div className="help-report-grid">
+    <div>
+     <h3>Troubleshoot the issue</h3>
+     <ol>
+      <li>Save any unfinished work, then refresh the page.</li>
+      <li>Check your internet connection.</li>
+      <li>Try opening the same page in another browser or on another device.</li>
+     </ol>
+    </div>
+    <div>
+     <h3>What to include in your report</h3>
+     <ul>
+      <li>The page or feature where the issue occurred.</li>
+      <li>What you were trying to do, what happened, and any error message.</li>
+      <li>A screenshot, if available. Hide any personal details before sharing it.</li>
+     </ul>
+    </div>
+   </div>
+   <div className="help-report-contact">
+    <h3>Contact the admin</h3>
+    <p>If the issue persists, have the details above ready when contacting the admin.</p>
+    <p><strong>Admin demo number</strong> 09XX XXX XXXX</p>
+   </div>
+  </section>
 
       <section className="help-more" aria-labelledby={`${instance}-more-title`}>
         <div className="help-more-icon" aria-hidden="true">

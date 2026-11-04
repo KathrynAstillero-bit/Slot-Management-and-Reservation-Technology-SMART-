@@ -1303,6 +1303,10 @@
   text-align: left;
 }
 
+.reference-profile-menu > button + button {
+  margin-top: 5px;
+}
+
 .reference-profile-menu>button:hover {
   background: #eaf3f8;
   color: #285a76;

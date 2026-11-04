@@ -419,3 +419,26 @@
     font-size: 14px;
   }
 }
+
+.reference-shell[data-theme] .reservations-page .toolbar:has(.queue-date-calendar),
+.reference-shell[data-theme] .reservations-page .toolbar > div:has(.queue-date-calendar) {
+  align-items: flex-start;
+}
+
+.queue-date-calendar {
+  width: min(240px, 100%);
+  padding: 10px;
+}
+
+.queue-date-calendar .calendar-days,
+.queue-date-calendar .calendar-week {
+  gap: 3px;
+}
+
+.queue-date-calendar .date-button {
+  height: 26px;
+  font-size: 12px;
+  min-width: 0;
+  min-height: 26px;
+  padding: 0;
+}
